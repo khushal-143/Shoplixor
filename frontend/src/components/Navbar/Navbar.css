@@ -1,0 +1,20 @@
+/* Hover underline animation */
+.nav-items li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: #00609F;
+    transition: 0.3s;
+}
+
+.nav-items li:hover::after {
+    width: 100%;
+}
+
+.nav-items li:hover {
+    color: #00609F;
+}
+
