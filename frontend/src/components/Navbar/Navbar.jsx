@@ -47,9 +47,9 @@ const Navbar = () => {
                         <InputText keyfilter="int" placeholder="Search Product" className='tw:bg-[#eff4ff]! tw:border-none! tw:focus:shadow-none! tw:p-2! tw:w-full!' />
                         <i className='pi pi-search tw:text-[#94A3B8] '></i>
                     </div>
-                    <i className='pi pi-heart tw:text-[#404751] tw:block'></i>
-                    <i className='pi pi-shopping-cart tw:text-[#404751] tw:block'></i>
-                    <i className='pi pi-user tw:text-[#404751] tw:block'></i>
+                    <i className='pi pi-heart nav-icon tw:relative tw:cursor-pointer tw:text-[#404751] tw:block'></i>
+                    <i className='pi pi-shopping-cart nav-icon tw:relative tw:cursor-pointer  tw:text-[#404751] tw:block'></i>
+                    <i className='pi pi-user nav-icon tw:relative tw:cursor-pointer  tw:text-[#404751] tw:block'></i>
                 </div>
                 <Button className='tw:hidden! tw:xs:block! tw:lg:hidden! tw:bg-[#00609F]! tw:border-none! tw:p-2! tw:focus:shadow-none!' icon="pi pi-bars" onClick={() => setVisible(true)} />
             </div>

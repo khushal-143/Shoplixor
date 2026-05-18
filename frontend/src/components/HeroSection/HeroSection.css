@@ -1,0 +1,9 @@
+
+.heroContainer{
+    background: url('../../assets/heroBg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: auto;
+    width: full;
+}
