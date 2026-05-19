@@ -1,6 +1,7 @@
 
 import Categories from '../../components/Categories/Categories'
 import CopyRight from '../../components/CopyRight/CopyRight'
+import FeaturedProducts from '../../components/FeaturedProducts/FeaturedProducts'
 import Footer from '../../components/Footer/Footer'
 import HeroSection from '../../components/HeroSection/HeroSection'
 import Navbar from '../../components/Navbar/Navbar'
@@ -10,7 +11,8 @@ const Home = () => {
     <>
       <Navbar />
       <HeroSection />
-      <Categories/>
+      <Categories />
+      <FeaturedProducts/>
       <Footer />
       <CopyRight/>
     </>

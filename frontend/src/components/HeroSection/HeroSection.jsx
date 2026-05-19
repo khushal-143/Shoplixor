@@ -36,7 +36,7 @@ const HeroSection = () => {
           </h1>
 
           {/* Description */}
-          <p className="tw:mt-6 tw:text-gray-600 tw:text-sm tw:md:text-lg tw:leading-8 tw:max-w-lg">
+          <p className="tw:mt-6 tw:md:text-gray-600 tw:text-sm tw:md:text-lg tw:leading-8 tw:max-w-lg">
             Discover a curated collection where high-end technology
             meets artisanal design. Redefining digital luxury for
             the modern aesthetic enthusiast.
