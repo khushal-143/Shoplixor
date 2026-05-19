@@ -61,8 +61,8 @@ const FeaturedProducts = () => {
                             />
 
                             {/* Heart Icon */}
-                            <button className="tw:absolute tw:top-4 tw:right-4 tw:w-8 tw:h-8 tw:flex tw:items-center tw:justify-center tw:bg-white tw:rounded-full tw:shadow-sm hover:tw:scale-110 tw:transition-all">
-                                <i className="pi pi-heart tw:cursor-pointer"></i>
+                            <button className="tw:absolute tw:top-4 tw:right-4 tw:w-8 tw:h-8 tw:flex tw:items-center tw:justify-center tw:bg-white tw:rounded-full tw:shadow-sm hover:tw:scale-110 tw:transition-all tw:cursor-pointer">
+                                <i className="pi pi-heart "></i>
                             </button>
                         </div>
 

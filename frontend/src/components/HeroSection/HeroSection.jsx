@@ -4,7 +4,7 @@ import { Ripple } from 'primereact/ripple'
 
 const HeroSection = () => {
   return (
-    <div className="tw:relative tw:w-full tw:h-screen tw:overflow-hidden tw:bg-[#f5f7fa]">
+    <div className="tw:relative tw:w-full tw:h-screen tw:min-h-120 tw:overflow-hidden tw:bg-[#f5f7fa]">
 
       {/* Background Image */}
       <img
