@@ -13,7 +13,15 @@ import relatedP1 from './relatedP1.png'
 import relatedP2 from './relatedP2.png'
 import relatedP3 from './relatedP3.png'
 import relatedP4 from './relatedP4.png'
+import p1 from './p1.png'
+import p2 from './p2.png'
+import p3 from './p3.png'
+import p4 from './p4.png'
+import p5 from './p5.png'
+import p6 from './p6.png'
+import p7 from './p7.png'
+import p8 from './p8.png'
 
-const assets = { heroBg, footW, accessories, audioGear, lifestyle, smartHome, wellness, featureP1, featureP2, featureP3, salePic, relatedP1, relatedP2, relatedP3, relatedP4}
+const assets = { heroBg, footW, accessories, audioGear, lifestyle, smartHome, wellness, featureP1, featureP2, featureP3, salePic, relatedP1, relatedP2, relatedP3, relatedP4, p1,p2,p3,p4,p5,p6,p7,p8}
 
 export default assets

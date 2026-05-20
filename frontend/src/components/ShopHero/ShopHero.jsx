@@ -1,7 +1,5 @@
-import { Card } from "primereact/card";
 import { Checkbox } from "primereact/checkbox";
 import { Dropdown } from "primereact/dropdown";
-import { Button } from "primereact/button";
 import assets from '../../assets/assets'
 import { Rating } from "primereact/rating";
 import { useState } from "react";
@@ -31,36 +29,64 @@ export default function ShopHero() {
         setSubject(_subject);
     }
 
-    const books = [
+    const products = [
         {
-            id: 1,
-            badge: "BESTSELLER",
-            title: "English Literacy: The Beginning",
-            author: "Sarah J. Higgins",
-            price: "$18.50",
-            oldPrice: "$24.00",
+            tag: "NEW",
+            image: assets.p1,
+            brand: "AETHER TECH",
+            title: "Aura-V1 Sneaker",
+            price: "$1,299",
             rating: "4.9",
-            image: assets.English,
         },
         {
-            id: 2,
-            badge: "NEW",
-            title: "Fun with Numbers: Math Lab",
-            author: "David Chen",
-            price: "$15.00",
-            oldPrice: "",
+            image: assets.p2,
+            brand: "TEMPORAL DESIGN",
+            title: "Zenith Chrono",
+            price: "$3,450",
+            rating: "5.0",
+        },
+        {
+            tag: "SALE",
+            image: assets.p3,
+            brand: "SONIC SPHERE",
+            title: "Echo Max Wireless",
+            price: "$599",
             rating: "4.8",
-            image: assets.Math1,
         },
         {
-            id: 3,
-            badge: "",
-            title: "Whimsical Rhymes & Riddles",
-            author: "Maya Angelou Jr.",
-            price: "$12.99",
-            oldPrice: "",
+            image: assets.p4,
+            brand: "LUMIX PRO",
+            title: "Aether Cam X",
+            price: "$2,100",
+            rating: "4.9",
+        },
+        {
+            image: assets.p5,
+            brand: "VISION ELITE",
+            title: "Skyframe Gradient",
+            price: "$450",
             rating: "4.7",
-            image: assets.Rhymes,
+        },
+        {
+            image: assets.p6,
+            brand: "AETHER CORE",
+            title: "Canvas Tab Pro",
+            price: "$1,850",
+            rating: "4.9",
+        },
+        {
+            image: assets.p7,
+            brand: "LIFE SYNC",
+            title: "Aura Smart Mirror",
+            price: "$2,700",
+            rating: "4.8",
+        },
+        {
+            image: assets.p8,
+            brand: "AMBIENT AIR",
+            title: "Mist Sculpt Pro",
+            price: "$320",
+            rating: "4.6",
         },
     ];
 
@@ -75,7 +101,10 @@ export default function ShopHero() {
             </div>
 
             <div className="tw:grid tw:grid-cols-1 tw:lg:grid-cols-4 tw:gap-6">
-                <div className="tw:bg-white tw:rounded-2xl tw:p-6 tw:shadow-sm tw:h-fit">
+                
+
+                
+                <div className="tw:bg-white tw:rounded-2xl tw:p-6 tw:shadow-sm tw:h-fit tw:lg:sticky tw:top-0">
 
                     <div className="tw:mb-6">
                         <h3 className="tw:text-base tw:font-normal tw:text-[#404751] tw:mb-6">CATEGORY</h3>
@@ -112,11 +141,8 @@ export default function ShopHero() {
                                 />
                                 <label htmlFor="atmosphere Tech" className="tw:text-base tw:font-inter tw:font-normal tw:leading-6 tw:text-[#0B1C30] ">Atmosphere Tech</label>
                             </div>
-
-
                         </div>
                     </div>
-
                     <div className="tw:flex tw:justify-between tw:gap-4">
                         <h4 className="tw:font-geist tw:font-medium tw:text-base tw:leading-5 tw:text-[#404751] tw:mb-3">Max Price</h4>
                         <span className="tw:font-geist tw:font-semibold tw:text-sm tw:leading-3 tw:text-[#00609F] ">$5-$5000</span>
@@ -142,12 +168,12 @@ export default function ShopHero() {
                                 pt={{
                                     onIcon: {
                                         style: {
-                                            color:"#eab308"
+                                            color: "#eab308"
                                         }
                                     },
                                     offIcon: {
                                         style: {
-                                            color:"#eab308"
+                                            color: "#eab308"
                                         }
                                     },
                                 }}
@@ -155,60 +181,93 @@ export default function ShopHero() {
                             <p className="tw:font-geist tw:font-semibold tw:text-sm tw:leading-3 tw:text-[#0B1C30] ">& Up</p>
                         </div>
                     </div>
-                </div>
+                    </div>
                 <div className="tw:lg:col-span-3">
                     <div className="tw:flex tw:flex-col tw:md:flex-row tw:justify-between tw:items-start tw:md:items-center tw:my-6 tw:gap-4">
                         <p className="tw:font-inter tw:font-normal tw:text-base tw:leading-6 tw:text-[#0B1C30]">Showing 12 of 48 products</p>
                         <div className="tw:flex tw:items-center tw:gap-3">
                             <span className="tw:text-sm tw:font-medium tw:font-geist tw:leading-5 tw:text-[#404751]">Sort By:</span>
-                            
                             <Dropdown value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={sortOptions} optionLabel="label"
                                 placeholder="Featured" className="w-full md:w-14rem tw:py-2 tw:pl-4 tw:focus:shadow-none! tw:bg-[#eff4ff]!" checkmark={true} highlightOnSelect={false} />
                         </div>
                     </div>
 
-                    <div className="tw:grid tw:grid-cols-1 tw:sm:grid-cols-2 tw:xl:grid-cols-3 tw:gap-6">
-                        {books.map((book) => (
-                            <Card key={book.id} className="tw:rounded-2xl tw:overflow-hidden tw:shadow-sm tw:border-0">
-                                <div className="tw:relative tw:bg-[#c7f1ee] tw:rounded-xl tw:p-4">
-                                    {book.badge && (
-                                        <span className="tw:absolute tw:top-3 tw:left-3 tw:bg-orange-400 tw:text-white tw:text-xs tw:px-3 tw:py-1 tw:rounded-full">
-                                            {book.badge}
-                                        </span>
-                                    )}
+                    <div className="tw:mt-10 tw:border-t tw:border-[#e5e7eb]">
 
-                                    <img
-                                        src={book.image}
-                                        alt={book.title}
-                                        className="tw:w-full tw:h-72 tw:object-cover tw:rounded-lg"
-                                    />
-                                </div>
+                        <section className="tw:w-full tw:bg-[#f5f7fa] tw:py-16 tw:px-4 md:tw:px-10">
 
-                                <div className="tw:pt-4">
-                                    <div className="tw:flex tw:justify-between tw:gap-3">
-                                        <h3 className="tw:font-semibold tw:text-lg">{book.title}</h3>
-                                        <span className="tw:text-sm tw:text-yellow-500">★ {book.rating}</span>
-                                    </div>
+                            <div className="tw:flex tw:flex-wrap tw:justify-around tw:gap-6">
 
-                                    <p className="tw:text-sm tw:text-gray-500 tw:mt-1">By {book.author}</p>
+                                {products.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className="tw:bg-white tw:rounded-[22px] tw:overflow-hidden tw:shadow-sm hover:tw:shadow-xl tw:transition-all tw:duration-300 tw:md:max-w-70"
+                                    >
 
-                                    <div className="tw:flex tw:justify-between tw:items-center tw:mt-5">
-                                        <div>
-                                            <span className="tw:text-2xl tw:font-bold tw:text-[#0d6b5f]">{book.price}</span>
-                                            {book.oldPrice && (
-                                                <span className="tw:text-sm tw:text-gray-400 tw:line-through tw:ml-2">{book.oldPrice}</span>
+                                        {/* Image */}
+                                        <div className="tw:relative">
+
+                                            <img
+                                                src={item.image}
+                                                alt={item.title}
+                                                className="tw:w-full tw:h-67.5 tw:object-cover"
+                                            />
+
+                                            {/* Tag */}
+                                            {item.tag && (
+
+                                                <span
+                                                    className={`tw:absolute tw:top-4 tw:left-4 tw:px-4 tw:py-1.5 tw:text-xs tw:font-semibold tw:rounded-full tw:text-white
+                                        
+                                        ${item.tag === "SALE" ? "tw:bg-[#e1261c]" : "tw:bg-[#0070d1]"}`}
+                                                >
+                                                    {item.tag}
+                                                </span>
                                             )}
+
+                                            {/* Cart Button */}
+                                            <button className="tw:absolute tw:bottom-4 tw:right-4 tw:w-12 tw:h-12 tw:bg-white tw:rounded-full tw:flex tw:items-center tw:justify-center tw:shadow-lg hover:tw:scale-110 tw:transition-all">
+
+                                                <i className="pi pi-cart-plus tw:text-[#0070d1] tw:text-xl"></i>
+                                                {/* <ShoppingBasket
+                                                    size={22}
+                                                    className=""
+                                                /> */}
+                                            </button>
                                         </div>
 
-                                        <Button
-                                            icon="pi pi-shopping-cart"
-                                            rounded
-                                            className="tw:bg-[#22b8a0]! tw:border-none!"
-                                        />
+                                        {/* Content */}
+                                        <div className="tw:p-5">
+
+                                            {/* Brand */}
+                                            <p className="tw:text-[11px] tw:font-semibold tw:tracking-[2px] tw:text-[#64748b] tw:uppercase">
+                                                {item.brand}
+                                            </p>
+
+                                            {/* Title */}
+                                            <h3 className="tw:font-geist tw:text-[24px] tw:leading-8 tw:font-bold tw:text-[#0f172a] tw:mt-2">
+                                                {item.title}
+                                            </h3>
+
+                                            {/* Price + Rating */}
+                                            <div className="tw:flex tw:items-center tw:justify-between tw:mt-2">
+
+                                                <span className="tw:text-[#0070d1] tw:text-[24px] tw:font-bold">
+                                                    {item.price}
+                                                </span>
+
+                                                <div className="tw:flex tw:items-center tw:gap-1">
+                                                    <i className="pi pi-star-fill tw:text-[#eab308] "></i>
+                                                    <span className="tw:text-[#4b5563] tw:text-lg tw:font-medium">
+                                                        {item.rating}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </Card>
-                        ))}
+                                ))}
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>
