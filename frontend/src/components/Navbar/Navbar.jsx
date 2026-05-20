@@ -38,7 +38,7 @@ const Navbar = () => {
                 <div>
                     <ul className='nav-items tw:hidden tw:lg:flex tw:justify-between tw:gap-6'>
                         <Link to='/'><li className='tw:cursor-pointer tw:relative tw:transition-all tw:duration-200 tw:font-lexend tw:font-medium tw:text-base tw:text-[#475569] tw:leading-6 '>Home</li></Link>
-                        <li className='tw:cursor-pointer tw:relative tw:transition-all tw:duration-200 tw:font-lexend tw:font-medium tw:text-base tw:text-[#475569] tw:leading-6 '>Shop</li>
+                        <Link to='/Shop'><li className='tw:cursor-pointer tw:relative tw:transition-all tw:duration-200 tw:font-lexend tw:font-medium tw:text-base tw:text-[#475569] tw:leading-6 '>Shop</li></Link>
                         <Link to='/gallery' ><li className='tw:cursor-pointer tw:relative tw:transition-all tw:duration-200 tw:font-lexend tw:font-medium tw:text-base tw:text-[#475569] tw:leading-6 '>About Us</li></Link>
                     </ul>
                 </div>

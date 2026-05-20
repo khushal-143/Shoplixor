@@ -18,3 +18,7 @@
     color: #00609F;
 }
 
+.p-rating .p-rating-item.p-focus {
+    box-shadow: none !important;
+}
+

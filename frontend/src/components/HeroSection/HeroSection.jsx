@@ -45,7 +45,7 @@ const HeroSection = () => {
           {/* Buttons */}
           <div className="tw:flex tw:flex-wrap tw:gap-4 tw:mt-10">
             <Button className='tw:bg-[#2b77c0]! tw:hover:bg-[#1f5fa0]! tw:px-8! tw:py-4! tw:rounded-full! tw:border-0! tw:focus:shadow-none!' >
-              <span className='tw:font-medium'>Shop Collection</span>
+              <span className='tw:font-medium tw:text-white'>Shop Collection</span>
             </Button>
 
             <Button className='tw:bg-white/80! tw:backdropbackdrop-blur-md! tw:hover:bg-white! tw:px-8! tw:py-4! tw:rounded-full! tw:border-0! tw:focus:shadow-none!'>

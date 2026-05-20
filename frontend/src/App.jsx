@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from './pages/Home/Home'
 import NotFound from './pages/NotFound/NotFound';
 import Shop from './pages/Shop/Shop';
+import Product from './pages/Product/Product';
 
 function App() {
 
@@ -10,7 +11,8 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/product/:id" element={<Shop/>} />
+        <Route path='/Shop' element={<Shop/>}/>
+        <Route path="/product/:id" element={<Product/>} />
         {/* 404 Route */}
         <Route path="*" element={<NotFound/>} />
       </Routes>
