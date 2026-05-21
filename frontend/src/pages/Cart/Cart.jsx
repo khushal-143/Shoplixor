@@ -11,7 +11,7 @@ const cartItems = [
         category: "PREMIUM TECH",
         title: "Echo Max Wireless",
         subtitle: "Midnight Slate Finish • Wireless 5.2",
-        price: "$549.00",
+        price: "₹549.00",
         image: assets.p3,
     },
     {
@@ -19,7 +19,7 @@ const cartItems = [
         category: "TIMEPIECES",
         title: "Aether Cam X",
         subtitle: "Brushed Titanium • Sapphire Crystal",
-        price: "$1,299.00",
+        price: "₹1,299.00",
         image: assets.p4,
     },
 ];
@@ -125,7 +125,7 @@ const Cart = () => {
                                                 </Button>
 
                                                 <span className="tw:text-sm tw:font-medium tw:text-[#0f172a]">
-                                                    0{quantity[item.id]}
+                                                    {quantity[item.id]}
                                                 </span>
 
                                                 <Button

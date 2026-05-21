@@ -6,9 +6,9 @@ const OrderSummary = () => {
           <div className="tw:flex tw:justify-center tw:items-center tw:xl:w-[30%]">
               <div className="tw:flex tw:flex-col tw:items-center tw:w-full  tw:gap-6">
                   {/* Summary Card */}
-                  <div className="tw:bg-white tw:rounded-[28px] tw:p-8 tw:shadow-sm">
+                  <div className="tw:bg-white tw:rounded-[28px] tw:p-8 tw:shadow-sm tw:md:w-1/2 tw:xl:w-full">
 
-                      <h3 className="tw:text-3xl tw:font-bold tw:text-[#0f172a]">
+                      <h3 className="tw:text-2xl tw:md:text-3xl tw:font-bold tw:text-[#0f172a]">
                           Order Summary
                       </h3>
 
@@ -17,17 +17,17 @@ const OrderSummary = () => {
 
                           <div className="tw:flex tw:justify-between tw:text-[#64748b]">
                               <span>Subtotal</span>
-                              <span>$1,848.00</span>
+                              <span>₹1,848.00</span>
                           </div>
 
                           <div className="tw:flex tw:justify-between tw:text-[#64748b]">
                               <span>Express Shipping</span>
-                              <span>$25.00</span>
+                              <span>₹25.00</span>
                           </div>
 
                           <div className="tw:flex tw:justify-between tw:text-[#64748b]">
                               <span>Tax Estimation</span>
-                              <span>$147.84</span>
+                              <span>₹147.84</span>
                           </div>
                       </div>
 
@@ -38,13 +38,13 @@ const OrderSummary = () => {
                               Total
                           </span>
 
-                          <span className="tw:text-4xl tw:font-bold tw:text-[#0070d1]">
-                              $2,020.84
+                          <span className="tw:text-2xl tw:md:text-3xl tw:font-bold tw:text-[#0070d1]">
+                            ₹2,020.84
                           </span>
                       </div>
 
                       {/* Checkout Button */}
-                      <Button className="tw:w-full tw:flex tw:items-center tw:justify-center tw:gap-3 tw:bg-[#2b77c0] tw:hover:bg-[#1f5fa0] tw:text-white tw:text-xl tw:font-semibold tw:py-6 tw:rounded-2xl tw:mt-10 tw:transition-all tw:focus:shadow-none">
+                      <Button className="tw:w-full tw:flex tw:items-center tw:justify-center tw:gap-3 tw:bg-[#2b77c0] tw:hover:bg-[#1f5fa0] tw:text-white tw:text-xl tw:font-semibold tw:py-3 tw:md:py-6 tw:rounded-2xl tw:mt-10 tw:transition-all tw:focus:shadow-none">
                           <i className="pi pi-lock"></i>
                           <span>Secure Checkout</span>
                       </Button>
