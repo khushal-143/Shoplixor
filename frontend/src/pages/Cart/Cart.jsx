@@ -45,7 +45,7 @@ const Cart = () => {
     return (
         <>
             <Navbar />
-            <section className="tw:w-full tw:bg-[#f5f7fa] tw:px-6 md:tw:px-12 tw:py-16">
+            <div className="tw:w-full tw:bg-[#f5f7fa] tw:px-6 tw:md:px-12 tw:py-16">
 
                 {/* Heading */}
                 <div className="tw:mb-14">
@@ -177,7 +177,7 @@ const Cart = () => {
                     <OrderSummary />
 
                 </div>
-            </section>
+            </div>
             <Footer />
         </>
     );

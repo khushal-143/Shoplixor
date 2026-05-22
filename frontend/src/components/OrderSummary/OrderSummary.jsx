@@ -1,4 +1,5 @@
 import { Button } from 'primereact/button'
+import { Link } from 'react-router-dom'
 
 const OrderSummary = () => {
   return (
@@ -44,10 +45,10 @@ const OrderSummary = () => {
                       </div>
 
                       {/* Checkout Button */}
-                      <Button className="tw:w-full tw:flex tw:items-center tw:justify-center tw:gap-3 tw:bg-[#2b77c0] tw:hover:bg-[#1f5fa0] tw:text-white tw:text-xl tw:font-semibold tw:py-3 tw:md:py-6 tw:rounded-2xl tw:mt-10 tw:transition-all tw:focus:shadow-none">
+                      <Link to='/checkout'><Button className="tw:w-full tw:flex tw:items-center tw:justify-center tw:gap-3 tw:bg-[#2b77c0] tw:hover:bg-[#1f5fa0] tw:text-white tw:text-xl tw:font-semibold tw:py-3 tw:md:py-6 tw:rounded-2xl tw:mt-10 tw:transition-all tw:focus:shadow-none">
                           <i className="pi pi-lock"></i>
                           <span>Secure Checkout</span>
-                      </Button>
+                      </Button></Link>
 
                       {/* Features */}
                       <div className="tw:space-y-4 tw:mt-8">
