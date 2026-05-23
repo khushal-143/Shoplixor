@@ -1,14 +1,18 @@
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Formik, Form } from "formik";
-import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { Password } from 'primereact/password';
+import MyContext from '../context/MyContext';
+import { useContext } from "react";
+
 import './SignupForm.css'
 const SignupForm = () => {
-    const navigate = useNavigate();
+    const {
+            setActiveTab
+        } = useContext(MyContext);
+    
 
-    // validation
     const validate = (values) => {
         const errors = {};
 
@@ -18,9 +22,8 @@ const SignupForm = () => {
 
         if (!values.email) {
             errors.email = "Email is required";
-        } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
+        }
+        else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
             errors.email = "Invalid email format";
         }
 
@@ -29,7 +32,6 @@ const SignupForm = () => {
         } else if (values.password.length < 4) {
             errors.password = "Password must be at least 4 characters";
         }
-
         return errors;
     };
     return (
@@ -51,36 +53,24 @@ const SignupForm = () => {
                     }}
                     validate={validate}
                     onSubmit={async (values, { setErrors }) => {
-
-                        console.log(values);
-
-                        const users = JSON.parse(localStorage.getItem("users")) || [];
                         try {
-                            const res = await axios.post('http://localhost:5000/formData', values);
-                            console.log('respose from the server ', res.data);
+                            const res = await axios.post(
+                                'http://localhost:5000/formData',
+                                values
+                            );
+                            console.log('response from server:', res.data);
+
+                            setActiveTab("login")
                         } catch (error) {
-                            console.log(error.message);
+                            console.log(error);
+
+                            if (error.response?.data?.message) {
+                                setErrors({
+                                    email: error.response.data.message
+                                });
+                            }
                         }
-
-                        const existingUser = users.find(
-                            (user) =>
-                                user.email.toLowerCase() === values.email.toLowerCase()
-                        );
-
-                        //  Email already exists
-                        if (existingUser) {
-                            setErrors({ email: "Email already registered" });
-                            return;
-                        }
-
-                        //  Save user
-                        const updatedUsers = [...users, values];
-                        localStorage.setItem("users", JSON.stringify(updatedUsers));
-
-                        //  Redirect to login
-                        navigate("/");
-                    }}
-                >
+                    }}>
                     {({
                         errors,
                         touched,
@@ -138,13 +128,12 @@ const SignupForm = () => {
                                     onBlur={handleBlur}
                                     placeholder="Password"
                                     toggleMask
-                                    className="tw:w-full tw:bg-[#f4f7fc] tw:rounded-xl tw:outline-none tw:border tw:border-transparent tw:text-base tw:placeholder:text-[#94a3b8]"
+                                    className="tw:w-full tw:bg-[#f4f7fc] tw:rounded-xl tw:outline-none tw:border tw:border-transparent tw:text-base tw:placeholder:text-[#94a3b8] tw:focus:mb:5"
                                     pt={{
                                         input: {
                                             className: "tw:focus:shadow-none tw:focus:bg-[#f4f7fc]"
                                         }
                                     }}
-
                                 />
                             </div>
 

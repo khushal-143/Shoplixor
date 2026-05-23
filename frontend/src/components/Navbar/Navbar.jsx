@@ -15,7 +15,7 @@ const Navbar = () => {
                         <div>
                             <h2 className='tw:mb-3'>Sidebar</h2>
                             <ul className='nav-items tw:flex tw:flex-col tw:justify-between tw:items-center tw:gap-6'>
-                                <Link to='/'><li className='tw:cursor-pointer tw:relative tw:transition-all tw:duration-200 tw:font-lexend tw:font-medium tw:text-base tw:text-[#475569] tw:leading-6 '>Home</li></Link>
+                                <Link to='/home'><li className='tw:cursor-pointer tw:relative tw:transition-all tw:duration-200 tw:font-lexend tw:font-medium tw:text-base tw:text-[#475569] tw:leading-6 '>Home</li></Link>
                                 <Link to='/shop'> <li className='tw:cursor-pointer tw:relative tw:transition-all tw:duration-200 tw:font-lexend tw:font-medium tw:text-base tw:text-[#475569] tw:leading-6 '>Shop</li></Link>
                                 <Link to='/gallery' ><li className='tw:cursor-pointer tw:relative tw:transition-all tw:duration-200 tw:font-lexend tw:font-medium tw:text-base tw:text-[#475569] tw:leading-6 '>About Us</li></Link>
                             </ul>
@@ -37,7 +37,7 @@ const Navbar = () => {
                 </div>
                 <div>
                     <ul className='nav-items tw:hidden tw:lg:flex tw:justify-between tw:gap-6'>
-                        <Link to='/'><li className='tw:cursor-pointer tw:relative tw:transition-all tw:duration-200 tw:font-lexend tw:font-medium tw:text-base tw:text-[#475569] tw:leading-6 '>Home</li></Link>
+                        <Link to='/home'><li className='tw:cursor-pointer tw:relative tw:transition-all tw:duration-200 tw:font-lexend tw:font-medium tw:text-base tw:text-[#475569] tw:leading-6 '>Home</li></Link>
                         <Link to='/shop'><li className='tw:cursor-pointer tw:relative tw:transition-all tw:duration-200 tw:font-lexend tw:font-medium tw:text-base tw:text-[#475569] tw:leading-6 '>Shop</li></Link>
                         <Link to='/gallery' ><li className='tw:cursor-pointer tw:relative tw:transition-all tw:duration-200 tw:font-lexend tw:font-medium tw:text-base tw:text-[#475569] tw:leading-6 '>About Us</li></Link>
                     </ul>
@@ -51,7 +51,9 @@ const Navbar = () => {
                     <Link to="/cart" className="tw:inline-block tw:z-50 tw:relative">
                         <i className="pi pi-shopping-cart nav-icon tw:text-[#404751] tw:cursor-pointer"></i>
                     </Link>
+                    <Link to='/profile' className="tw:inline-block tw:z-50 tw:relative">
                         <i className='pi pi-user nav-icon tw:relative tw:cursor-pointer  tw:text-[#404751] tw:block'></i>
+                    </Link>
                 </div>
                 <Button className='tw:hidden! tw:xs:block! tw:lg:hidden! tw:bg-[#00609F]! tw:border-none! tw:p-2! tw:focus:shadow-none! tw:rounded-xl tw:text-white' icon="pi pi-bars" onClick={() => setVisible(true)} />
             </div>

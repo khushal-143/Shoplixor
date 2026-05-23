@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useContext } from "react";
 import assets from "../../assets/assets";
 import { Button } from "primereact/button";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import SignupForm from '../../components/SignupForm/SignupForm'
+import MyContext from '../../components/context/MyContext';
+
 const Login = () => {
-    const [activeTab, setActiveTab] = useState("login");
+    const {
+        activeTab, setActiveTab
+    } = useContext(MyContext);
 
     return (
-        <section className="tw:min-h-screen  tw:max-h-0 tw:flex tw:justify-center tw:lg:justify-between  tw:bg-[#f5f7fa]">
+        <div className="tw:min-h-screen  tw:max-h-0 tw:flex tw:justify-center tw:lg:justify-between  tw:bg-[#f5f7fa]">
 
             {/* LEFT SIDE */}
             <div className="tw:relative tw:hidden tw:w-[60%] tw:lg:block">
@@ -105,10 +109,13 @@ const Login = () => {
                     </div>
 
                     {/* Form Card */}
-                    {activeTab === "login"?<LoginForm/>:<SignupForm/>}
+                    {activeTab === "login"
+                        ? <LoginForm />
+                        : <SignupForm />
+                    }
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 

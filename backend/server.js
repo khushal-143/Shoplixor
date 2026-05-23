@@ -22,6 +22,19 @@ app.post('/formData', async (req, res) => {
         const { name, email, password } = req.body;
         console.log('data from client:', name, email, password);
 
+        // Check if user already exists
+        const existingUser = await User.findOne({ email });
+
+        if (existingUser) {
+
+            return res.status(400).json({
+                success: false,
+                message: "Email already registered"
+            });
+
+        }
+
+        // Create new user
         const newUser = await User.create({
             name,
             email,
@@ -35,6 +48,44 @@ app.post('/formData', async (req, res) => {
         });
 
     } catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({
+            success: false,
+            message: "Server Error"
+        });
+
+    }
+
+});
+app.post('/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email });
+        // User not found
+        if (!user) {
+            return res.status(400).json({
+                success: false,
+                message: "User not found"
+            });
+        }
+
+        // Password check
+        if (user.password !== password) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid password"
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Login successful",
+            user
+        });
+
+    } catch (error) {
         console.log(error);
         res.status(500).json({
             success: false,
@@ -42,7 +93,6 @@ app.post('/formData', async (req, res) => {
         });
     }
 });
-
 
 // Start server
 app.listen(PORT, () => {

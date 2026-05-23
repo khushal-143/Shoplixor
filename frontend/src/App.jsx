@@ -7,20 +7,21 @@ import Product from './pages/Product/Product';
 import Cart from './pages/Cart/Cart';
 import Checkout from './pages/Checkout/Checkout';
 import Login from './pages/Login/Login';
+import ProfileDashboard from './pages/ProfileDashboard/ProfileDashboard';
 
 function App() {
-
   return (
     <>
       <Routes>
-        <Route path='/login' element={<Login/>}/>
-        <Route path="/" element={<Home />} />
+        <Route path='/' element={<Login />} />
+        <Route path="/home" element={<Home />} />
         <Route path='/shop' element={<Shop />} />
         <Route path='/cart' element={<Cart />} />
-        <Route path='/checkout' element={<Checkout/>}/>
-        <Route path="/product/:id" element={<Product/>} />
+        <Route path='/profile' element={<ProfileDashboard/>}/>
+        <Route path='/checkout' element={<Checkout />} />
+        <Route path="/product/:id" element={<Product />} />
         {/* 404 Route */}
-        <Route path="*" element={<NotFound/>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   )

@@ -18,7 +18,7 @@ const NotFound = () => {
                 </p>
 
                 <Link
-                    to="/"
+                    to="/home"
                     className="tw:mt-8 tw:inline-block tw:rounded-xl tw:bg-linear-to-r tw:from-cyan-500 tw:to-blue-600 tw:px-6 tw:py-3 tw:text-lg tw:font-semibold tw:shadow-lg tw:transition-all tw:duration-300 hover:tw:scale-105 hover:tw:shadow-cyan-500/40"
                 >
                     Go Back Home
