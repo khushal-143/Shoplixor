@@ -1,38 +1,70 @@
-import { useState } from "react";
+import MyContext from '../../components/context/MyContext';
+import { useState, useContext } from "react";
 import Navbar from '../../components/Navbar/Navbar'
 import { Button } from "primereact/button";
 import {
-    User,
-    ShoppingBag,
-    Heart,
-    Settings,
     Package,
     BadgeCheck,
     Bookmark,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
+import Footer from '../../components/Footer/Footer';
 
 const ProfileDashboard = () => {
+    const { user,setUser } = useContext(MyContext);
     const [activeTab, setActiveTab] = useState("Profile");
+    const navigate = useNavigate();
+    useEffect(() => {
+        const getProfile = async () => {
+            try {
+
+                const token = localStorage.getItem("token");
+
+                const res = await axios.get(
+                    "http://localhost:5000/profile",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+
+                console.log(res.data);
+
+            } catch (error) {
+
+                console.log(error);
+
+            }
+        };
+        getProfile();
+    }, []);
+
 
     const sidebarItems = [
         {
             name: "Profile",
-            icon: <User size={18} />,
+            icon: 'pi pi-user',
         },
         {
             name: "Orders",
-            icon: <ShoppingBag size={18} />,
+            icon: 'pi pi-shopping-bag',
         },
         {
             name: "Wishlist",
-            icon: <Heart size={18} />,
+            icon: 'pi pi-heart',
         },
         {
             name: "Settings",
-            icon: <Settings size={18} />,
+            icon: 'pi pi-cog',
         },
+        {
+            name: "Logout",
+            icon:"pi pi-sign-out"
+        }
     ];
-
     const stats = [
         {
             title: "Recent Orders",
@@ -41,16 +73,15 @@ const ProfileDashboard = () => {
         },
         {
             title: "Member Since",
-            value: "2021",
+            value: `${user.year}`,
             icon: <BadgeCheck size={20} />,
         },
         {
-            title: "Saved Items",
+            title: "Cart Items",
             value: "45",
             icon: <Bookmark size={20} />,
         },
     ];
-
     return (
         <>
             <Navbar/>
@@ -69,9 +100,16 @@ const ProfileDashboard = () => {
                                 {sidebarItems.map((item, index) => (
                                     <Button
                                         key={index}
-                                        onClick={() =>
-                                            setActiveTab(item.name)
-                                        }
+                                        onClick={() => {
+                                            if (item.name === "Logout") {
+                                                localStorage.removeItem("token");
+                                                localStorage.removeItem("user");
+                                                setUser(null);
+                                                navigate("/");
+                                            } else {
+                                                setActiveTab(item.name);
+                                            }
+                                        }}
                                         className={`tw:flex tw:mb:justify-center tw:md:justify-start tw:w-full tw:gap-4 tw:px-5 tw:py-4 tw:rounded-xl tw:text-left tw:font-medium tw:transition-all! tw:focus:shadow-none
                                         
                                         ${activeTab === item.name
@@ -80,7 +118,7 @@ const ProfileDashboard = () => {
                                             }
                                     `}
                                     >
-                                        {item.icon}
+                                        <i className={item.icon}></i>
 
                                         {item.name}
                                     </Button>
@@ -163,11 +201,11 @@ const ProfileDashboard = () => {
 
                                     <div>
                                         <h2 className="tw:text-2xl tw:md:text-4xl tw:font-bold tw:text-[#0f172a]">
-                                            Alexander Sterling
+                                            {user.name}
                                         </h2>
 
                                         <p className="tw:text-[#64748b] tw:text-base tw:md:text-lg tw:mt-2">
-                                            alexander.sterling@aether.com
+                                            {user.email}
                                         </p>
                                     </div>
                                 </div>
@@ -194,7 +232,7 @@ const ProfileDashboard = () => {
 
                                         <input
                                             type="text"
-                                            value="Alexander Sterling"
+                                            value={user.name}
                                             readOnly
                                             className="tw:w-full tw:bg-[#f4f7fc] tw:px-5 tw:py-4 tw:rounded-xl tw:outline-none tw:text-[#0f172a]"
                                         />
@@ -208,7 +246,7 @@ const ProfileDashboard = () => {
 
                                         <input
                                             type="email"
-                                            value="alexander.sterling@aether.com"
+                                            value={user.email}
                                             readOnly
                                             className="tw:w-full tw:bg-[#f4f7fc] tw:px-5 tw:py-4 tw:rounded-xl tw:outline-none tw:text-[#0f172a]"
                                         />
@@ -219,6 +257,7 @@ const ProfileDashboard = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     );
 };

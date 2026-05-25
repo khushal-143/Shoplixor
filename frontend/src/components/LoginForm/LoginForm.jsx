@@ -1,12 +1,15 @@
+import MyContext from '../../components/context/MyContext';
 import { InputText } from "primereact/inputtext";
 import { Checkbox } from "primereact/checkbox";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Password } from 'primereact/password';
+import { useState, useContext } from "react";
 import { Button } from "primereact/button";
 import { Formik, Form } from "formik";
 import axios from 'axios'
-import { Password } from 'primereact/password';
-import { useNavigate } from "react-router-dom";
+
 const LoginForm = () => {
+    const { setUser } = useContext(MyContext);
     const [checked, setChecked] = useState(false);
     const navigate = useNavigate();
     const validate = (values) => {
@@ -30,11 +33,9 @@ const LoginForm = () => {
     return (
         <>
             <div className="tw:flex tw:flex-col tw:gap-4 tw:bg-white tw:rounded-[30px] tw:p-6 tw:md:p-8 tw:mt-4 tw:border tw:border-[#e8edf5]">
-
                 <h2 className="tw:text-xl tw:md:text-3xl tw:leading-7 tw:font-bold tw:text-[#071c36]">
                     Welcome back
                 </h2>
-
                 <p className="tw:text-[#4b5563] tw:text-base tw:leading-6tw:mt-0 ">
                     Please enter your details to sign in to your account.
                 </p>
@@ -54,9 +55,26 @@ const LoginForm = () => {
                                 values
                             );
 
-                            console.log('response from server:', res.data);
-                            navigate("/home");
+                            const data = res.data.user;
+                            console.log(res.data);
+                            
+                            localStorage.setItem("token", res.data.token);
 
+                            setUser({
+                                name: data.name,
+                                email: data.email,
+                                year: data.createdAt.slice(0, 4),
+                            });
+
+                            localStorage.setItem(
+                                "user",
+                                JSON.stringify({
+                                    name: data.name,
+                                    email: data.email,
+                                    year: data.createdAt.slice(0, 4),
+                                })
+                            );
+                            navigate("/home");
                         } catch (error) {
                             // console.log(error);
                             if (error.response?.data?.message) {
@@ -109,7 +127,7 @@ const LoginForm = () => {
                                             className: "tw:focus:shadow-none tw:focus:bg-[#f4f7fc]"
                                         },
                                         panel: {
-                                            className:"tw:hidden"
+                                            className: "tw:hidden"
                                         }
                                     }}
                                 />

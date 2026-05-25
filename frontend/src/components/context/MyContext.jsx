@@ -3,9 +3,11 @@ import { createContext, useState } from "react";
 const MyContext = createContext();
 
 export const MyProvider = ({ children }) => {
-    const [user, setUser] = useState(
-        JSON.parse(localStorage.getItem("activeUser")) || null
-    );
+    const [user, setUser] = useState(() => {
+        const savedUser = localStorage.getItem("user");
+
+        return savedUser ? JSON.parse(savedUser) : null;
+    });
     const [activeTab, setActiveTab] = useState("login");
 
     return (
