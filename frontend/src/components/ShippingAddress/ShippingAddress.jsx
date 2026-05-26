@@ -50,13 +50,13 @@ const ShippingAddress = () => {
 
                       <InputText
                           type="text"
-                          placeholder="First Name"
+                          placeholder="Full Name"
                           className="tw:flex-1 tw:w-full tw:bg-[#f4f7fc] tw:px-5 tw:py-4 tw:rounded-xl tw:outline-none tw:border tw:border-transparent tw:text-[#0f172a] tw:placeholder:text-[#94a3b8]"
                       />
 
                       <InputText
-                          type="text"
-                          placeholder="Last Name"
+                          type="number"
+                          placeholder="Phone"
                           className="tw:flex-1 tw:w-full tw:bg-[#f4f7fc] tw:px-5 tw:py-4 tw:rounded-xl tw:outline-none tw:border tw:border-transparent  tw:text-[#0f172a] tw:placeholder:text-[#94a3b8]"
                       />
                   </div>

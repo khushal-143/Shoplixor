@@ -35,14 +35,14 @@ export default function ShopHero() {
             image: assets.p1,
             brand: "AETHER TECH",
             title: "Aura-V1 Sneaker",
-            price: "$1,299",
+            price: "₹1,299",
             rating: "4.9",
         },
         {
             image: assets.p2,
             brand: "TEMPORAL DESIGN",
             title: "Zenith Chrono",
-            price: "$3,450",
+            price: "₹3,450",
             rating: "5.0",
         },
         {
@@ -50,42 +50,42 @@ export default function ShopHero() {
             image: assets.p3,
             brand: "SONIC SPHERE",
             title: "Echo Max Wireless",
-            price: "$599",
+            price: "₹599",
             rating: "4.8",
         },
         {
             image: assets.p4,
             brand: "LUMIX PRO",
             title: "Aether Cam X",
-            price: "$2,100",
+            price: "₹2,100",
             rating: "4.9",
         },
         {
             image: assets.p5,
             brand: "VISION ELITE",
             title: "Skyframe Gradient",
-            price: "$450",
+            price: "₹450",
             rating: "4.7",
         },
         {
             image: assets.p6,
             brand: "AETHER CORE",
             title: "Canvas Tab Pro",
-            price: "$1,850",
+            price: "₹1,850",
             rating: "4.9",
         },
         {
             image: assets.p7,
             brand: "LIFE SYNC",
             title: "Aura Smart Mirror",
-            price: "$2,700",
+            price: "₹2,700",
             rating: "4.8",
         },
         {
             image: assets.p8,
             brand: "AMBIENT AIR",
             title: "Mist Sculpt Pro",
-            price: "$320",
+            price: "₹320",
             rating: "4.6",
         },
     ];
@@ -101,9 +101,6 @@ export default function ShopHero() {
             </div>
 
             <div className="tw:grid tw:grid-cols-1 tw:lg:grid-cols-4 tw:gap-6">
-                
-
-                
                 <div className="tw:bg-white tw:rounded-2xl tw:p-6 tw:shadow-sm tw:h-fit tw:lg:sticky tw:top-0">
 
                     <div className="tw:mb-6">
@@ -145,7 +142,7 @@ export default function ShopHero() {
                     </div>
                     <div className="tw:flex tw:justify-between tw:gap-4">
                         <h4 className="tw:font-geist tw:font-medium tw:text-base tw:leading-5 tw:text-[#404751] tw:mb-3">Max Price</h4>
-                        <span className="tw:font-geist tw:font-semibold tw:text-sm tw:leading-3 tw:text-[#00609F] ">$5-$5000</span>
+                        <span className="tw:font-geist tw:font-semibold tw:text-sm tw:leading-3 tw:text-[#00609F] ">₹5-₹5000</span>
                     </div>
                     <div className="tw:flex tw:justify-center  ">
                         <Slider value={priceValue} onChange={(e) => setPriceValue(e.value)} className="tw:w-full" min={0}

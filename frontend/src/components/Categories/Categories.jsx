@@ -1,6 +1,6 @@
 import { Button } from "primereact/button";
 import assets from "../../assets/assets"
-
+import { useState } from "react";
 const categories = [
     {
         title: "Footwear",
@@ -26,9 +26,24 @@ const categories = [
         title: "Wellness",
         image: `${assets.wellness}`,
     },
+    
 ];
-
+const allCategories = [
+    {
+        title: "Speaker",
+        image: `${assets.speaker}`
+    },
+    {
+        title: "Phone",
+        image:`${assets.phone}`
+    }
+];
 const Categories = () => {
+    const [visibleCategories, setVisibleCategories] = useState(categories);
+    const handleBrowseAll = () => {
+        setVisibleCategories([...categories, ...allCategories]);
+    };
+
     return (
         <div className="tw:w-full tw:bg-[#f5f7fa] tw:py-16 tw:px-6 md:tw:px-16">
 
@@ -45,16 +60,20 @@ const Categories = () => {
                     </p>
                 </div>
 
-                <Button className="tw:flex! tw:items-center! tw:gap-2! tw:bg-transparent! tw:text-[#2b77c0]! tw:font-medium! tw:hover:gap-3! tw:transition-all! tw:duration-300! tw:border-0! tw:focus:shadow-none!">
+                {visibleCategories.length < 7 ? <Button
+                    onClick={handleBrowseAll}
+                    className="tw:flex! tw:items-center! tw:gap-2! tw:bg-transparent! tw:text-[#2b77c0]! tw:font-medium! tw:hover:gap-3! tw:transition-all! tw:duration-300! tw:border-0! tw:focus:shadow-none!"
+                >
                     <span className="tw:text-sm tw:mb:text-base ">Browse All</span>
                     <i className="pi pi-arrow-right"></i>
-                </Button>
+                </Button>:<></>}
+                
             </div>
 
             {/* Categories */}
-            <div className="tw:flex tw:flex-wrap tw:justify-around tw:gap-8">
+            <div className="tw:flex tw:flex-wrap tw:justify-around tw:gap-8 tw:xs:gap-14">
 
-                {categories.map((item, index) => (
+                {visibleCategories.map((item, index) => (
                     <div
                         key={index}
                         className="tw:flex tw:flex-col tw:items-center tw:group tw:cursor-pointer"

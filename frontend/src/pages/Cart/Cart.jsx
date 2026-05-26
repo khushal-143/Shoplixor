@@ -42,6 +42,7 @@ const Cart = () => {
         }));
     };
 
+
     return (
         <>
             <Navbar />

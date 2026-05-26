@@ -2,12 +2,12 @@ import MyContext from '../../components/context/MyContext';
 import { useState, useContext } from "react";
 import Navbar from '../../components/Navbar/Navbar'
 import { Button } from "primereact/button";
+import {  Navigate } from "react-router-dom";
 import {
     Package,
     BadgeCheck,
     Bookmark,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 import Footer from '../../components/Footer/Footer';
@@ -15,28 +15,35 @@ import Footer from '../../components/Footer/Footer';
 const ProfileDashboard = () => {
     const { user,setUser } = useContext(MyContext);
     const [activeTab, setActiveTab] = useState("Profile");
-    const navigate = useNavigate();
+    
     useEffect(() => {
         const getProfile = async () => {
             try {
+                const token =
+                    localStorage.getItem("token") ||
+                    sessionStorage.getItem("token");
 
-                const token = localStorage.getItem("token");
+                // ✅ Redirect immediately if no token
+                if (!token) {
+                    return <Navigate to="/" replace />;
+                }
 
-                const res = await axios.get(
-                    "http://localhost:5000/profile",
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
+                const res = await axios.get("http://localhost:5000/profile", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
 
                 console.log(res.data);
 
             } catch (error) {
-
                 console.log(error);
-
+                // ✅ Also redirect if token is invalid/expired (401)
+                if (error.response?.status === 401) {
+                    localStorage.removeItem("token");
+                    sessionStorage.removeItem("token");
+                    <Navigate to="/" replace />
+                }
             }
         };
         getProfile();
@@ -73,7 +80,7 @@ const ProfileDashboard = () => {
         },
         {
             title: "Member Since",
-            value: `${user.year}`,
+            value: `${user?.year || ""}`,
             icon: <BadgeCheck size={20} />,
         },
         {
@@ -104,8 +111,13 @@ const ProfileDashboard = () => {
                                             if (item.name === "Logout") {
                                                 localStorage.removeItem("token");
                                                 localStorage.removeItem("user");
+
+                                                sessionStorage.removeItem("token");
+                                                sessionStorage.removeItem("user");
+
                                                 setUser(null);
-                                                navigate("/");
+
+                                                <Navigate to="/" replace />
                                             } else {
                                                 setActiveTab(item.name);
                                             }
@@ -201,11 +213,11 @@ const ProfileDashboard = () => {
 
                                     <div>
                                         <h2 className="tw:text-2xl tw:md:text-4xl tw:font-bold tw:text-[#0f172a]">
-                                            {user.name}
+                                            {user?.name || ""}
                                         </h2>
 
                                         <p className="tw:text-[#64748b] tw:text-base tw:md:text-lg tw:mt-2">
-                                            {user.email}
+                                            {user?.email || ""}
                                         </p>
                                     </div>
                                 </div>
@@ -232,7 +244,7 @@ const ProfileDashboard = () => {
 
                                         <input
                                             type="text"
-                                            value={user.name}
+                                            value={user?.name || ""}
                                             readOnly
                                             className="tw:w-full tw:bg-[#f4f7fc] tw:px-5 tw:py-4 tw:rounded-xl tw:outline-none tw:text-[#0f172a]"
                                         />
@@ -246,7 +258,7 @@ const ProfileDashboard = () => {
 
                                         <input
                                             type="email"
-                                            value={user.email}
+                                            value={user?.email || ""}
                                             readOnly
                                             className="tw:w-full tw:bg-[#f4f7fc] tw:px-5 tw:py-4 tw:rounded-xl tw:outline-none tw:text-[#0f172a]"
                                         />

@@ -5,6 +5,8 @@ import audioGear from './Audio Gear.png'
 import lifestyle from './lifestyle.png'
 import smartHome from './Smart Home.png'
 import wellness from './Wellness.png'
+import speaker from './speaker.png'
+import phone from './phone.png'
 import featureP1 from './featureP1.png'
 import featureP2 from './featureP2.png'
 import featureP3 from './featureP3.png'
@@ -23,6 +25,6 @@ import p7 from './p7.png'
 import p8 from './p8.png'
 import loginBg from './loginBg.png'
  
-const assets = { heroBg, footW, accessories, audioGear, lifestyle, smartHome, wellness, featureP1, featureP2, featureP3, salePic, relatedP1, relatedP2, relatedP3, relatedP4, p1,p2,p3,p4,p5,p6,p7,p8, loginBg}
+const assets = { heroBg, footW, accessories, audioGear, lifestyle, smartHome, wellness, featureP1, featureP2, featureP3, salePic, relatedP1, relatedP2, relatedP3, relatedP4, p1,p2,p3,p4,p5,p6,p7,p8, loginBg, speaker, phone }
 
 export default assets

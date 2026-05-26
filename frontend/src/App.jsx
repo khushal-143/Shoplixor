@@ -1,5 +1,9 @@
 import './App.css'
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
+import { useContext } from "react";
+
+import MyContext from './components/context/MyContext';
+
 import Home from './pages/Home/Home'
 import NotFound from './pages/NotFound/NotFound';
 import Shop from './pages/Shop/Shop';
@@ -10,18 +14,78 @@ import Login from './pages/Login/Login';
 import ProfileDashboard from './pages/ProfileDashboard/ProfileDashboard';
 
 function App() {
+
+  const { user } = useContext(MyContext);
+
   return (
     <>
       <Routes>
-        <Route path='/' element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route path='/shop' element={<Shop />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/profile' element={<ProfileDashboard/>}/>
-        <Route path='/checkout' element={<Checkout />} />
-        <Route path="/product/:id" element={<Product />} />
-        {/* 404 Route */}
+
+        <Route
+          path='/'
+          element={
+            user
+              ? <Navigate to="/home" />
+              : <Login />
+          }
+        />
+
+        <Route
+          path="/home"
+          element={
+            user
+              ? <Home />
+              : <Navigate to="/" />
+          }
+        />
+
+        <Route
+          path='/shop'
+          element={
+            user
+              ? <Shop />
+              : <Navigate to="/" />
+          }
+        />
+
+        <Route
+          path='/cart'
+          element={
+            user
+              ? <Cart />
+              : <Navigate to="/" />
+          }
+        />
+
+        <Route
+          path='/profile'
+          element={
+            user
+              ? <ProfileDashboard />
+              : <Navigate to="/" />
+          }
+        />
+
+        <Route
+          path='/checkout'
+          element={
+            user
+              ? <Checkout />
+              : <Navigate to="/" />
+          }
+        />
+
+        <Route
+          path="/product/:id"
+          element={
+            user
+              ? <Product />
+              : <Navigate to="/" />
+          }
+        />
+
         <Route path="*" element={<NotFound />} />
+
       </Routes>
     </>
   )

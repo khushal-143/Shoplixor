@@ -1,16 +1,16 @@
-import MyContext from '../../components/context/MyContext';
 import { InputText } from "primereact/inputtext";
 import { Checkbox } from "primereact/checkbox";
 import { useNavigate } from "react-router-dom";
 import { Password } from 'primereact/password';
-import { useState, useContext } from "react";
 import { Button } from "primereact/button";
 import { Formik, Form } from "formik";
 import axios from 'axios'
+import MyContext from '../../components/context/MyContext';
+import { useState, useContext } from "react";
 
 const LoginForm = () => {
-    const { setUser } = useContext(MyContext);
     const [checked, setChecked] = useState(false);
+    const { setUser } = useContext(MyContext);
     const navigate = useNavigate();
     const validate = (values) => {
         const errors = {};
@@ -58,22 +58,35 @@ const LoginForm = () => {
                             const data = res.data.user;
                             console.log(res.data);
                             
-                            localStorage.setItem("token", res.data.token);
+                            // console.log(checked);
+                            if (checked) {
+                                localStorage.setItem("token", res.data.token);
 
+                                localStorage.setItem(
+                                    "user",
+                                    JSON.stringify({
+                                        name: data.name,
+                                        email: data.email,
+                                        year: data.createdAt.slice(0, 4),
+                                    })
+                                );
+                            } else {
+                                sessionStorage.setItem("token", res.data.token);
+
+                                sessionStorage.setItem(
+                                    "user",
+                                    JSON.stringify({
+                                        name: data.name,
+                                        email: data.email,
+                                        year: data.createdAt.slice(0, 4),
+                                    })
+                                );
+                            }
                             setUser({
                                 name: data.name,
                                 email: data.email,
                                 year: data.createdAt.slice(0, 4),
                             });
-
-                            localStorage.setItem(
-                                "user",
-                                JSON.stringify({
-                                    name: data.name,
-                                    email: data.email,
-                                    year: data.createdAt.slice(0, 4),
-                                })
-                            );
                             navigate("/home");
                         } catch (error) {
                             // console.log(error);
