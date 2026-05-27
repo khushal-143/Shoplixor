@@ -7,13 +7,14 @@ const products = [
     price: 159999,
     discountPrice: 149999,
     brand: "Apple",
-    ratings: 4.9,
+    ratings: 5,
     createdBy: "Admin",
     category: "Smartphones",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779857877/iPhone-15-Pro-Max_ucavr5.webp'
   },
   {
     id: 2,
-    title: "Samsung Galaxy S25 Ultra",
+    title: "Samsung S25 Ultra",
     description: "Premium Samsung smartphone with advanced AI camera system.",
     price: 139999,
     discountPrice: 129999,
@@ -21,6 +22,7 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Smartphones",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779860243/Samsung_Galaxy_S25_Ultra_mwerca.webp',
   },
   {
     id: 3,
@@ -32,6 +34,7 @@ const products = [
     ratings: 4.7,
     createdBy: "Admin",
     category: "Smartphones",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779860244/OnePlus_13_zfzuae.webp'
   },
   {
     id: 4,
@@ -43,6 +46,7 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Smartphones",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779860244/Google_Pixel_9_Pro_rfhlyq.webp'
   },
   {
     id: 5,
@@ -54,6 +58,7 @@ const products = [
     ratings: 4.6,
     createdBy: "Admin",
     category: "Smartphones",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779860244/Xiaomi_15_Pro_wrkzth.webp'
   },
   {
     id: 6,
@@ -65,6 +70,7 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Smartphones",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779861807/nothing_3_ya6nbw.webp',
   },
   {
     id: 7,
@@ -76,6 +82,7 @@ const products = [
     ratings: 4.4,
     createdBy: "Admin",
     category: "Smartphones",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779861807/moto_Edge_50_iiec6t.webp',
   },
   {
     id: 8,
@@ -87,6 +94,7 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Smartphones",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779861808/iq-13_ianbhz.webp'
   },
 
   // ================= FOOTWEAR (6) =================
@@ -100,6 +108,7 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Footwear",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/sheos_y4rodq.webp'
   },
   {
     id: 10,
@@ -111,6 +120,7 @@ const products = [
     ratings: 4.7,
     createdBy: "Admin",
     category: "Footwear",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/AdidasUltraboost5_xacafc.webp',
   },
   {
     id: 11,
@@ -122,6 +132,8 @@ const products = [
     ratings: 4.4,
     createdBy: "Admin",
     category: "Footwear",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/PumaRS-X_sjcysk.webp',
+
   },
   {
     id: 12,
@@ -133,6 +145,8 @@ const products = [
     ratings: 4.6,
     createdBy: "Admin",
     category: "Footwear",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/NewBalance9060_h5lung.webp',
+
   },
   {
     id: 13,
@@ -144,6 +158,8 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Footwear",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/ConverseChuckTaylor_ozfzea.webp',
+
   },
   {
     id: 14,
@@ -155,6 +171,7 @@ const products = [
     ratings: 4.3,
     createdBy: "Admin",
     category: "Footwear",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/ReebokNanoX4_pauiqc.webp',
   },
 
   // ================= ACCESSORIES (6) =================
@@ -168,6 +185,7 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Accessories",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779865148/Apple_Watch_Series_10_lzocyb.png',
   },
   {
     id: 16,
@@ -179,6 +197,7 @@ const products = [
     ratings: 4.7,
     createdBy: "Admin",
     category: "Accessories",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779865147/Ray-Ban_Aviator_Sunglasses_xixng0.png',
   },
   {
     id: 17,
@@ -190,6 +209,7 @@ const products = [
     ratings: 4.6,
     createdBy: "Admin",
     category: "Accessories",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779865147/Casio_G-Shock_GA2100_kkac5t.png',
   },
   {
     id: 18,
@@ -201,6 +221,7 @@ const products = [
     ratings: 4.4,
     createdBy: "Admin",
     category: "Accessories",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779865147/Fossil_Leather_Wallet_kloyil.png',
   },
   {
     id: 19,
@@ -212,6 +233,7 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Accessories",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779865149/Samsung_Galaxy_Watch_7_qhgj6p.png',
   },
   {
     id: 20,
@@ -223,6 +245,7 @@ const products = [
     ratings: 4.2,
     createdBy: "Admin",
     category: "Accessories",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779865148/Tommy_Hilfiger_Cap_qcttlw.png',
   },
 
   // ================= AUDIO GEAR (6) =================
@@ -236,6 +259,7 @@ const products = [
     ratings: 4.9,
     createdBy: "Admin",
     category: "Audio Gear",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779866152/Sony_WH-1000XM6_mbqaej.png',
   },
   {
     id: 22,
@@ -247,6 +271,7 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Audio Gear",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779866152/AirPods_Pro_3_p2xgmb.png',
   },
   {
     id: 23,
@@ -258,6 +283,7 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Audio Gear",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779866150/JBL_Tune_770NC_ccdaxl.png',
   },
   {
     id: 24,
@@ -269,6 +295,7 @@ const products = [
     ratings: 4.2,
     createdBy: "Admin",
     category: "Audio Gear",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779866150/Boat_Airdopes_411_ve9b5a.png',
   },
   {
     id: 25,
@@ -280,6 +307,7 @@ const products = [
     ratings: 4.7,
     createdBy: "Admin",
     category: "Audio Gear",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779866151/Sennheiser_Momentum_4_ea4g5w.png',
   },
   {
     id: 26,
@@ -291,6 +319,7 @@ const products = [
     ratings: 4.4,
     createdBy: "Admin",
     category: "Audio Gear",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779866151/Nothing_Ear_3_up6k0h.png',
   },
 
   // ================= SMART HOME (6) =================
@@ -304,6 +333,7 @@ const products = [
     ratings: 4.6,
     createdBy: "Admin",
     category: "Smart Home",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867021/Amazon_Echo_Dot_5_itc0sv.png',
   },
   {
     id: 28,
@@ -315,6 +345,7 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Smart Home",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867011/Google_Nest_Hub_bdjkjb.png',
   },
   {
     id: 29,
@@ -326,6 +357,7 @@ const products = [
     ratings: 4.4,
     createdBy: "Admin",
     category: "Smart Home",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867012/Mi_Smart_Air_Purifier_4_pxrmbj.png',
   },
   {
     id: 30,
@@ -337,6 +369,7 @@ const products = [
     ratings: 4.7,
     createdBy: "Admin",
     category: "Smart Home",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867011/Philips_Hue_Starter_Kit_cepuso.png',
   },
   {
     id: 31,
@@ -348,6 +381,7 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Smart Home",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867022/Dyson_V15_Detect_alsqjx.png',
   },
   {
     id: 32,
@@ -359,6 +393,7 @@ const products = [
     ratings: 4.3,
     createdBy: "Admin",
     category: "Smart Home",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867012/TP-Link_Smart_Plug_hboszs.png',
   },
 
   // ================= LIFESTYLE (6) =================
@@ -372,6 +407,7 @@ const products = [
     ratings: 4.7,
     createdBy: "Admin",
     category: "Lifestyle",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867746/Kindle_Paperwhite_kwrayc.png',
   },
   {
     id: 34,
@@ -383,6 +419,7 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Lifestyle",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867747/GoPro_Hero_13_oxi78r.png',
   },
   {
     id: 35,
@@ -394,6 +431,7 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Lifestyle",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867745/Instax_Mini_12_hqasdb.png',
   },
   {
     id: 36,
@@ -405,6 +443,7 @@ const products = [
     ratings: 4.4,
     createdBy: "Admin",
     category: "Lifestyle",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867646/Herschel_Backpack_cvc46h.png',
   },
   {
     id: 37,
@@ -416,6 +455,7 @@ const products = [
     ratings: 4.3,
     createdBy: "Admin",
     category: "Lifestyle",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867746/Parker_Vector_Pen_tjxhus.png',
   },
   {
     id: 38,
@@ -427,6 +467,7 @@ const products = [
     ratings: 4.2,
     createdBy: "Admin",
     category: "Lifestyle",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867748/Wildcraft_Travel_Bag_euoqfd.png',
   },
 
   // ================= WELLNESS (6) =================
@@ -440,6 +481,7 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Wellness",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779868507/Fitbit_Charge_6_yxfjap.png',
   },
   {
     id: 40,
@@ -451,6 +493,7 @@ const products = [
     ratings: 4.4,
     createdBy: "Admin",
     category: "Wellness",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779868511/Cult_Dumbbell_Set_c7u8h5.png',
   },
   {
     id: 41,
@@ -462,6 +505,7 @@ const products = [
     ratings: 4.3,
     createdBy: "Admin",
     category: "Wellness",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779868508/Nike_Yoga_Mat_la3wly.png',
   },
   {
     id: 42,
@@ -473,6 +517,7 @@ const products = [
     ratings: 4.1,
     createdBy: "Admin",
     category: "Wellness",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779868508/NoiseFit_Active_rtnw69.png',
   },
   {
     id: 43,
@@ -484,6 +529,7 @@ const products = [
     ratings: 4.4,
     createdBy: "Admin",
     category: "Wellness",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779868509/AGARO_Massage_Gun_ftoigx.png',
   },
   {
     id: 44,
@@ -495,6 +541,7 @@ const products = [
     ratings: 4.2,
     createdBy: "Admin",
     category: "Wellness",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779868510/Boldfit_Resistance_Bands_wj3tmj.png',
   },
 
   // ================= SPEAKERS (6) =================
@@ -508,6 +555,7 @@ const products = [
     ratings: 4.7,
     createdBy: "Admin",
     category: "Speakers",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779869353/JBL_Flip_7_llwbhy.png',
   },
   {
     id: 46,
@@ -519,6 +567,7 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Speakers",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779869352/Marshall_Emberton_II_za6rzi.png',
   },
   {
     id: 47,
@@ -530,6 +579,7 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Speakers",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779869352/Sony_SRS-XB100_efsplu.png',
   },
   {
     id: 48,
@@ -541,6 +591,7 @@ const products = [
     ratings: 4.3,
     createdBy: "Admin",
     category: "Speakers",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779869352/Boat_Stone_1500_w7bfrx.png',
   },
   {
     id: 49,
@@ -552,6 +603,7 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Speakers",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779869350/Bose_SoundLink_Flex_ls3epm.png',
   },
   {
     id: 50,
@@ -563,7 +615,9 @@ const products = [
     ratings: 4.6,
     createdBy: "Admin",
     category: "Speakers",
+    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779869349/Ultimate_Ears_Boom_4_o9rglt.png',
   },
 ];
+
 
 export default products;

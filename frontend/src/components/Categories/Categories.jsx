@@ -1,47 +1,35 @@
 import { Button } from "primereact/button";
-import assets from "../../assets/assets"
-import { useState } from "react";
-const categories = [
-    {
-        title: "Footwear",
-        image: `${assets.footW}`,
-    },
-    {
-        title: "Accessories",
-        image: `${assets.accessories}`,
-    },
-    {
-        title: "Audio Gear",
-        image: `${assets.audioGear}`,
-    },
-    {
-        title: "Smart Home",
-        image: `${assets.smartHome}`,
-    },
-    {
-        title: "Lifestyle",
-        image: `${assets.lifestyle}`,
-    },
-    {
-        title: "Wellness",
-        image: `${assets.wellness}`,
-    },
-    
-];
-const allCategories = [
-    {
-        title: "Speaker",
-        image: `${assets.speaker}`
-    },
-    {
-        title: "Phone",
-        image:`${assets.phone}`
-    }
-];
+import { useState, useEffect } from "react";
+import axios from 'axios'
+
 const Categories = () => {
-    const [visibleCategories, setVisibleCategories] = useState(categories);
+    const [allCategories, setAllCategories] = useState([]);
+    const [visibleCategories, setVisibleCategories] = useState([]);
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const res = await axios(
+                    "http://localhost:5000/api/categories"
+                );
+
+                setAllCategories(res.data.categories);
+                setVisibleCategories(
+                    res.data.categories.slice(0, 6)
+                );
+
+            } catch (error) {
+                console.log(
+                    "Error fetching categories:",
+                    error
+                );
+            }
+        };
+
+        fetchCategories();
+    }, []);
+    
     const handleBrowseAll = () => {
-        setVisibleCategories([...categories, ...allCategories]);
+        setVisibleCategories(allCategories);
     };
 
     return (
@@ -60,13 +48,21 @@ const Categories = () => {
                     </p>
                 </div>
 
-                {visibleCategories.length < 7 ? <Button
-                    onClick={handleBrowseAll}
-                    className="tw:flex! tw:items-center! tw:gap-2! tw:bg-transparent! tw:text-[#2b77c0]! tw:font-medium! tw:hover:gap-3! tw:transition-all! tw:duration-300! tw:border-0! tw:focus:shadow-none!"
-                >
-                    <span className="tw:text-sm tw:mb:text-base ">Browse All</span>
-                    <i className="pi pi-arrow-right"></i>
-                </Button>:<></>}
+                {visibleCategories.length < allCategories.length && (
+
+                    <Button
+                        onClick={handleBrowseAll}
+                        className="tw:flex! tw:items-center! tw:gap-2! tw:bg-transparent! tw:text-[#2b77c0]! tw:font-medium! tw:hover:gap-3! tw:transition-all! tw:duration-300! tw:border-0! tw:focus:shadow-none!"
+                    >
+
+                        <span className="tw:text-sm tw:mb:text-base">
+                            Browse All
+                        </span>
+
+                        <i className="pi pi-arrow-right"></i>
+
+                    </Button>
+                )}
                 
             </div>
 

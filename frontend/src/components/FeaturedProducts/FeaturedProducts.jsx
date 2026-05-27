@@ -1,30 +1,31 @@
 import { Button } from "primereact/button";
-import assets from "../../assets/assets";
-const products = [
-    {
-        title: "Aether Sound S1",
-        price: "$450",
-        image: `${assets.featureP1}`,
-        description:
-            "Immersive spatial audio in a precision-milled aluminum chassis.",
-    },
-    {
-        title: "Nexus Glass V",
-        price: "$1,200",
-        image: `${assets.featureP2}`,
-        description:
-            "Seamless glass architecture with revolutionary computational power.",
-    },
-    {
-        title: "Optic Legacy III",
-        price: "$2,800",
-        image: `${assets.featureP3}`,
-        description:
-            "Heritage design language powered by a full-frame 60MP sensor.",
-    },
-];
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const FeaturedProducts = () => {
+    const [featuredproducts, setFeaturedProducts] = useState([]);
+    useEffect(() => {
+
+        const fetchProducts = async () => {
+            try {
+                const res = await axios(
+                    "http://localhost:5000/api/featured-products"
+                );
+
+                console.log(res.data.featuredProducts);
+                
+                setFeaturedProducts(res.data.featuredProducts.slice(4, 7))
+
+            } catch (error) {
+                console.log(
+                    "Error fetching categories:",
+                    error
+                );
+            }
+        };
+
+        fetchProducts();
+    }, []);
     return (
         <div className="tw:w-full tw:bg-[#f5f7fa] tw:py-16 tw:px-6 md:tw:px-16">
 
@@ -45,7 +46,7 @@ const FeaturedProducts = () => {
             {/* Product Cards */}
             <div className="tw:flex tw:flex-wrap tw:justify-around tw:gap-6">
 
-                {products.map((item, index) => (
+                {featuredproducts.map((item, index) => (
                     <div
                         key={index}
                         className="tw:bg-white tw:rounded-[22px] tw:max-w-82.5 tw:p-4 tw:border tw:border-[#edf1f5] hover:tw:shadow-xl tw:transition-all tw:duration-300"
@@ -77,7 +78,7 @@ const FeaturedProducts = () => {
                                 </h3>
 
                                 <span className="tw:text-[#2b77c0] tw:text-sm tw:font-medium tw:mt-1">
-                                    {item.price}
+                                    ₹{item.discountPrice}
                                 </span>
                             </div>
 
@@ -87,7 +88,7 @@ const FeaturedProducts = () => {
                             </p>
 
                             {/* Button */}
-                            <Button label="Add to Cart" className="tw:flex tw:justify-center tw:text-[#2b77c0]! tw:w-full! tw:mt-6! tw:border-[#2b77c0]! tw:bg-white! tw:hover:bg-[#2b77c0]! tw:hover:text-white! tw:py-3! tw:rounded-xl!  tw:font-medium! tw:transition-all! tw:duration-300! tw:focus:shadow-none!">
+                            <Button label="Add to Cart" className="tw:flex tw:justify-center tw:text-[#2b77c0]! tw:w-full! tw:mt-6! tw:border tw:border-[#2b77c0]! tw:bg-white! tw:hover:bg-[#2b77c0]! tw:hover:text-white! tw:py-3! tw:rounded-xl!  tw:font-medium! tw:transition-all! tw:duration-300! tw:focus:shadow-none!">
                             </Button>
                             
                         </div>
