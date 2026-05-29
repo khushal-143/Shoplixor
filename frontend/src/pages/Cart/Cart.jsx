@@ -1,47 +1,104 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import assets from "../../assets/assets";
 import Footer from "../../components/Footer/Footer";
 import { Button } from 'primereact/button'
 import { InputText } from "primereact/inputtext";
 import OrderSummary from '../../components/OrderSummary/OrderSummary'
-const cartItems = [
-    {
-        id: 1,
-        category: "PREMIUM TECH",
-        title: "Echo Max Wireless",
-        subtitle: "Midnight Slate Finish • Wireless 5.2",
-        price: "₹549.00",
-        image: assets.p3,
-    },
-    {
-        id: 2,
-        category: "TIMEPIECES",
-        title: "Aether Cam X",
-        subtitle: "Brushed Titanium • Sapphire Crystal",
-        price: "₹1,299.00",
-        image: assets.p4,
-    },
-];
+import axios from 'axios'
 
 const Cart = () => {
-    const [quantity, setQuantity] = useState({
-        1: 1,
-        2: 1,
-    });
+    const [cartItems, setCartItems] = useState([]);
 
-    const updateQuantity = (id, type) => {
-        setQuantity((prev) => ({
-            ...prev,
-            [id]:
-                type === "inc"
-                    ? prev[id] + 1
-                    : prev[id] > 1
-                        ? prev[id] - 1
-                        : 1,
-        }));
+    const removeItem = async (productId) => {
+        try {
+            const token =
+                localStorage.getItem("token") ||
+                sessionStorage.getItem("token");
+
+            await axios.delete(
+                `http://localhost:5000/api/cart/remove/${productId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            setCartItems((prev) =>
+                prev.filter(
+                    (item) =>
+                        item.product._id !== productId
+                )
+            );
+
+        } catch (error) {
+            console.log(error);
+        }
     };
+    const updateQuantity = async (
+        productId,
+        currentQuantity,
+        type
+    ) => {
+        try {
+            const token =
+                localStorage.getItem("token") ||
+                sessionStorage.getItem("token");
 
+            const newQuantity =
+                type === "inc"
+                    ? currentQuantity + 1
+                    : Math.max(1, currentQuantity - 1);
+
+            const res = await axios.put(
+                "http://localhost:5000/api/cart/update",
+                {
+                    productId,
+                    quantity: newQuantity,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            setCartItems(
+                res.data.cart.items
+            );
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    useEffect(() => {
+        const fetchCart = async () => {
+            try {
+                const token =
+                    localStorage.getItem("token") ||
+                    sessionStorage.getItem("token");
+
+                const res = await axios.get(
+                    "http://localhost:5000/api/cart",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+
+                console.log(res.data?.cart?.items);
+                
+                setCartItems(res.data?.cart?.items || []);
+            } catch (error) {
+                console.log(
+                    "Error fetching categories:",
+                    error
+                );
+            }
+        };
+        fetchCart();
+    }, []);
 
     return (
         <>
@@ -73,14 +130,14 @@ const Cart = () => {
 
                             {cartItems.map((item) => (
                                 <div
-                                    key={item.id}
+                                    key={item.product?._id}
                                     className="tw:bg-white tw:rounded-[28px] tw:p-6 tw:flex tw:flex-col tw:md:flex-row  tw:md:w-full  tw:gap-6 tw:shadow-sm"
                                 >
 
                                     {/* Image */}
                                     <img
-                                        src={item.image}
-                                        alt={item.title}
+                                        src={item.product?.images?.[0]}
+                                        alt={item.product?.title}
                                         className="tw:w-full tw:md:w-auto tw:md:max-w-48 tw:h-full tw:rounded-2xl tw:object-cover"
                                     />
 
@@ -92,18 +149,18 @@ const Cart = () => {
                                             <div className="tw:flex tw:flex-col tw:md:flex-row tw:justify-between tw:gap-2">
                                                 <div>
                                                     <p className="tw:text-[11px] tw:font-semibold tw:tracking-[2px] tw:text-[#2b77c0] tw:uppercase">
-                                                        {item.category}
+                                                        {item.product?.category}
                                                     </p>
                                                     <h2 className="tw:text-3xl tw:font-bold tw:text-[#0f172a] tw:mt-2">
-                                                        {item.title}
+                                                        {item.product?.title}
                                                     </h2>
                                                 </div>
                                                 <span className="tw:text-[#0070d1] tw:text-3xl tw:font-bold">
-                                                    {item.price}
+                                                    ₹{item.product?.discountPrice}
                                                 </span>
                                             </div>
                                             <p className="tw:text-[#64748b] tw:text-sm tw:mt-1">
-                                                {item.subtitle}
+                                                {item.product?.subtitle}
                                             </p>
                                         </div>
 
@@ -116,7 +173,8 @@ const Cart = () => {
                                                 <Button
                                                     onClick={() =>
                                                         updateQuantity(
-                                                            item.id,
+                                                            item.product._id,
+                                                            item.quantity,
                                                             "dec"
                                                         )
                                                     }
@@ -126,13 +184,14 @@ const Cart = () => {
                                                 </Button>
 
                                                 <span className="tw:text-sm tw:font-medium tw:text-[#0f172a]">
-                                                    {quantity[item.id]}
+                                                    { item.quantity }
                                                 </span>
 
                                                 <Button
                                                     onClick={() =>
                                                         updateQuantity(
-                                                            item.id,
+                                                            item.product._id,
+                                                            item.quantity,
                                                             "inc"
                                                         )
                                                     }
@@ -143,7 +202,11 @@ const Cart = () => {
                                             </div>
 
                                             {/* Remove */}
-                                            <Button className="tw:flex tw:items-center tw:gap-2 tw:text-[#64748b] tw:hover:text-red-500 tw:text-sm tw:transition-all tw:focus:shadow-none!">
+                                            <Button
+                                                className="tw:flex tw:items-center tw:gap-2 tw:text-[#64748b] tw:hover:text-red-500 tw:text-sm tw:transition-all tw:focus:shadow-none!"
+                                                onClick={() =>
+                                                    removeItem(item.product._id)
+                                                }>
                                                 <i className="pi pi-trash"></i>
                                                 <span>Remove</span>
                                             </Button>
@@ -155,7 +218,7 @@ const Cart = () => {
                         </div>
 
                         {/* Promo Code */}
-                        <div className="tw:mt-12">
+                        {cartItems.length > 0 && <div className="tw:mt-12">
                             <p className="tw:text-[11px] tw:font-semibold tw:tracking-[2px] tw:text-[#0f172a] tw:uppercase tw:mb-5">
                                 Privilege Code
                             </p>
@@ -172,10 +235,12 @@ const Cart = () => {
                                 </Button>
                             </div>
                         </div>
+                        }
+                        
                     </div>
 
                     {/* RIGHT SIDE */}
-                    <OrderSummary />
+                    {cartItems.length>0 && <OrderSummary cartItems={cartItems} />}
 
                 </div>
             </div>

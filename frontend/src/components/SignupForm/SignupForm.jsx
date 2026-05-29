@@ -55,7 +55,7 @@ const SignupForm = () => {
                     onSubmit={async (values, { setErrors }) => {
                         try {
                             const res = await axios.post(
-                                'http://localhost:5000/register',
+                                'http://localhost:5000/api/auth/register',
                                 values
                             );
                             console.log('response from server:', res.data);

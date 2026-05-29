@@ -9,7 +9,7 @@ const FeaturedProducts = () => {
         const fetchProducts = async () => {
             try {
                 const res = await axios(
-                    "http://localhost:5000/api/featured-products"
+                    "http://localhost:5000/api/products/featured"
                 );
 
                 console.log(res.data.featuredProducts);

@@ -5,13 +5,13 @@ import ProductDetails from '../../components/ProductDetails/ProductDetails'
 import Footer from '../../components/Footer/Footer'
 
 const Product = () => {
-    const { id } = useParams();
+  const { id } = useParams();
   return (
     <>
-          <Navbar />
-          <ProductDetails id={id} />
-          <AlsoLike />
-          <Footer />
+      <Navbar />
+      <ProductDetails id={id} />
+      <AlsoLike productId={id} />
+      <Footer />
     </>
   )
 }

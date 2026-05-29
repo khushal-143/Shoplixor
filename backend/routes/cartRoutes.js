@@ -1,103 +1,49 @@
 import express from "express";
-import cartItems from "../data/cart.js";
+
+import authMiddleware from "../middleware/authMiddleware.js";
+
+import {
+  getCart,
+  addToCart,
+  removeCartItem,
+  clearCart,
+  updateCartQuantity,
+} from "../controllers/cartController.js";
 
 const router = express.Router();
 
-// GET CART
-router.get("/", (req, res) => {
-  const totalItems = cartItems.reduce(
-    (acc, item) => acc + item.quantity,
-    0
-  );
 
-  const totalPrice = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+// GET USER CART
+router.get(
+  "/",
+  authMiddleware,
+  getCart
+);
 
-  res.status(200).json({
-    success: true,
-    totalItems,
-    totalPrice,
-    cartItems,
-  });
-});
 
 // ADD TO CART
-router.post("/add", (req, res) => {
-  const {
-    productId,
-    title,
-    description,
-    image,
-    price,
-    quantity,
-    brand,
-    category,
-  } = req.body;
+router.post(
+  "/add",
+  authMiddleware,
+  addToCart
+);
 
-  const existingItem = cartItems.find(
-    (item) => item.productId === productId
-  );
 
-  if (existingItem) {
-    existingItem.quantity += quantity || 1;
+// REMOVE ITEM
+router.delete(
+  "/remove/:id",
+  authMiddleware,
+  removeCartItem
+);
 
-    return res.status(200).json({
-      success: true,
-      message: "Quantity updated in cart",
-      cartItems,
-    });
-  }
 
-  const newCartItem = {
-    cartItemId: cartItems.length + 1,
-    productId,
-    title,
-    description,
-    image,
-    price,
-    quantity: quantity || 1,
-    brand,
-    category,
-  };
+// CLEAR CART
+router.delete(
+  "/clear",
+  authMiddleware,
+  clearCart
+);
 
-  cartItems.push(newCartItem);
-
-  res.status(201).json({
-    success: true,
-    message: "Product added to cart",
-    cartItem: newCartItem,
-  });
-});
-
-// REMOVE SINGLE CART ITEM
-
-router.delete("/remove/:id", (req, res) => {
-  const cartItemId = parseInt(req.params.id);
-
-  // Find item index
-  const itemIndex = cartItems.findIndex(
-    (item) => item.cartItemId === cartItemId
-  );
-
-  // Item not found
-  if (itemIndex === -1) {
-    return res.status(404).json({
-      success: false,
-      message: "Cart item not found",
-    });
-  }
-
-  // Remove item
-  const removedItem = cartItems.splice(itemIndex, 1);
-
-  res.status(200).json({
-    success: true,
-    message: "Item removed from cart",
-    removedItem,
-    cartItems,
-  });
-});
+router.put("/update", authMiddleware, updateCartQuantity);
 
 export default router;

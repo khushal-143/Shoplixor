@@ -1,53 +1,53 @@
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
-const authMiddleware = async (req, res, next) => {
+const authMiddleware = async (
+  req,
+  res,
+  next
+) => {
+  try {
+    const authHeader =
+      req.headers.authorization;
 
-    try {
+    if (
+      !authHeader ||
+      !authHeader.startsWith("Bearer ")
+    ) {
+      return res.status(401).json({
+        success: false,
+        message: "No token provided",
+      });
+    }
 
-        const authHeader = req.headers.authorization;
+    const token =
+      authHeader.split(" ")[1];
 
-        if (
-            !authHeader ||
-            !authHeader.startsWith("Bearer ")
-        ) {
-            return res.status(401).json({
-                message: "No token provided",
-            });
-        }
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET
+    );
 
-        const token = authHeader.split(" ")[1];
+    const user = await User.findById(
+      decoded.id
+    ).select("-password");
 
-console.log("TOKEN:", token);
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "User not found",
+      });
+    }
 
-const decoded = jwt.verify(
-    token,
-    process.env.JWT_SECRET
-);
+    req.user = user;
 
-console.log("DECODED:", decoded);
-
-        const user = await User.findById(decoded.id)
-            .select("-password");
-
-        if (!user) {
-            return res.status(401).json({
-                message: "User not found",
-            });
-        }
-
-        req.user = user;
-
-        next();
-
-    } catch (error) {
-
-    console.log("JWT ERROR:", error.message);
-
+    next();
+  } catch (error) {
     return res.status(401).json({
-        message: "Invalid token",
+      success: false,
+      message: "Invalid token",
     });
-}
+  }
 };
 
 export default authMiddleware;

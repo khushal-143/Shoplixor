@@ -2,7 +2,7 @@ import MyContext from '../../components/context/MyContext';
 import { useState, useContext } from "react";
 import Navbar from '../../components/Navbar/Navbar'
 import { Button } from "primereact/button";
-import {  Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import {
     Package,
     BadgeCheck,
@@ -13,9 +13,9 @@ import { useEffect } from "react";
 import Footer from '../../components/Footer/Footer';
 
 const ProfileDashboard = () => {
-    const { user,setUser } = useContext(MyContext);
+    const { user, setUser } = useContext(MyContext);
     const [activeTab, setActiveTab] = useState("Profile");
-    
+
     useEffect(() => {
         const getProfile = async () => {
             try {
@@ -23,7 +23,7 @@ const ProfileDashboard = () => {
                     localStorage.getItem("token") ||
                     sessionStorage.getItem("token");
 
-                // ✅ Redirect immediately if no token
+                //  Redirect immediately if no token
                 if (!token) {
                     return <Navigate to="/" replace />;
                 }
@@ -69,7 +69,7 @@ const ProfileDashboard = () => {
         },
         {
             name: "Logout",
-            icon:"pi pi-sign-out"
+            icon: "pi pi-sign-out"
         }
     ];
     const stats = [
@@ -91,7 +91,7 @@ const ProfileDashboard = () => {
     ];
     return (
         <>
-            <Navbar/>
+            <Navbar />
             <div className="tw:w-full tw:min-h-screen tw:bg-[#f5f7fa] tw:px-6 tw:md:px-10 tw:py-10">
 
                 <div className="tw:flex tw:flex-col tw:md:flex-row  tw:gap-8">
@@ -123,7 +123,7 @@ const ProfileDashboard = () => {
                                             }
                                         }}
                                         className={`tw:flex tw:mb:justify-center tw:md:justify-start tw:w-full tw:gap-4 tw:px-5 tw:py-4 tw:rounded-xl tw:text-left tw:font-medium tw:transition-all! tw:focus:shadow-none
-                                        
+                                        ${item.name === 'Logout' && "tw:text-[#ee0a0a]"}
                                         ${activeTab === item.name
                                                 ? "tw:bg-[#2b77c0] tw:text-white"
                                                 : "tw:text-[#0f172a] hover:tw:bg-[#f4f7fc]"
@@ -131,7 +131,6 @@ const ProfileDashboard = () => {
                                     `}
                                     >
                                         <i className={item.icon}></i>
-
                                         {item.name}
                                     </Button>
                                 ))}
@@ -269,7 +268,7 @@ const ProfileDashboard = () => {
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </>
     );
 };

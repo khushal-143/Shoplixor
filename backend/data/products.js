@@ -1,7 +1,6 @@
 const products = [
   // ================= SMARTPHONES (8) =================
   {
-    id: 1,
     title: "iPhone 15 Pro Max",
     description: "Apple flagship smartphone with A17 Pro chip and titanium design.",
     price: 159999,
@@ -10,10 +9,15 @@ const products = [
     ratings: 5,
     createdBy: "Admin",
     category: "Smartphones",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779857877/iPhone-15-Pro-Max_ucavr5.webp'
+    images: [
+      "https://res.cloudinary.com/dqil4xngt/image/upload/v1779857877/iPhone-15-Pro-Max_ucavr5.webp",
+      "https://res.cloudinary.com/dqil4xngt/image/upload/v1780058392/p1-2_zstvbr.png",
+      'https://res.cloudinary.com/dqil4xngt/image/upload/v1780058388/p1-3_j9hns6.png',
+      'https://res.cloudinary.com/dqil4xngt/image/upload/v1780058386/p1-4_mbokfe.png',
+      'https://res.cloudinary.com/dqil4xngt/image/upload/v1780058385/p1-5_wjynrg.png',
+      'https://res.cloudinary.com/dqil4xngt/image/upload/v1780058388/p1-6_cd6fe2.png'],
   },
   {
-    id: 2,
     title: "Samsung S25 Ultra",
     description: "Premium Samsung smartphone with advanced AI camera system.",
     price: 139999,
@@ -22,7 +26,12 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Smartphones",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779860243/Samsung_Galaxy_S25_Ultra_mwerca.webp',
+    images: [
+      'https://res.cloudinary.com/dqil4xngt/image/upload/v1779860243/Samsung_Galaxy_S25_Ultra_mwerca.webp',
+      'https://res.cloudinary.com/dqil4xngt/image/upload/v1780060899/p2-2_pjrjrb.png',
+      'https://res.cloudinary.com/dqil4xngt/image/upload/v1780060898/p2-3_vcdxa7.png',
+      'https://res.cloudinary.com/dqil4xngt/image/upload/v1780060899/p2-4_dbikgp.png'
+    ],
   },
   {
     id: 3,
@@ -34,10 +43,14 @@ const products = [
     ratings: 4.7,
     createdBy: "Admin",
     category: "Smartphones",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779860244/OnePlus_13_zfzuae.webp'
+    images: [
+      'https://res.cloudinary.com/dqil4xngt/image/upload/v1779860244/OnePlus_13_zfzuae.webp',
+      'https://res.cloudinary.com/dqil4xngt/image/upload/v1780061503/p3-2_b2owfa.png',
+      'https://res.cloudinary.com/dqil4xngt/image/upload/v1780061499/p3-3_x45gjt.png',
+      'https://res.cloudinary.com/dqil4xngt/image/upload/v1780061492/p3-4_xgphkm.png'
+    ]
   },
   {
-    id: 4,
     title: "Google Pixel 9 Pro",
     description: "Google AI-powered smartphone with exceptional camera quality.",
     price: 109999,
@@ -46,10 +59,14 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Smartphones",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779860244/Google_Pixel_9_Pro_rfhlyq.webp'
+    images: [
+      'https://res.cloudinary.com/dqil4xngt/image/upload/v1779860244/Google_Pixel_9_Pro_rfhlyq.webp',
+      'https://res.cloudinary.com/dqil4xngt/image/upload/v1780062042/p4-2_d419br.png',
+      'https://res.cloudinary.com/dqil4xngt/image/upload/v1780062038/p4-3_u7o6ry.png',
+      'https://res.cloudinary.com/dqil4xngt/image/upload/v1780062040/p4-4_jbo5qk.png'
+    ]
   },
   {
-    id: 5,
     title: "Xiaomi 15 Pro",
     description: "Flagship Xiaomi phone with Leica camera setup.",
     price: 89999,
@@ -58,10 +75,11 @@ const products = [
     ratings: 4.6,
     createdBy: "Admin",
     category: "Smartphones",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779860244/Xiaomi_15_Pro_wrkzth.webp'
+    images: [
+      'https://res.cloudinary.com/dqil4xngt/image/upload/v1779860244/Xiaomi_15_Pro_wrkzth.webp'
+    ]
   },
   {
-    id: 6,
     title: "Nothing Phone 3",
     description: "Minimal transparent design smartphone with Glyph interface.",
     price: 54999,
@@ -70,10 +88,9 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Smartphones",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779861807/nothing_3_ya6nbw.webp',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779861807/nothing_3_ya6nbw.webp'],
   },
   {
-    id: 7,
     title: "Motorola Edge 60 Ultra",
     description: "Motorola premium smartphone with curved pOLED display.",
     price: 69999,
@@ -82,10 +99,9 @@ const products = [
     ratings: 4.4,
     createdBy: "Admin",
     category: "Smartphones",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779861807/moto_Edge_50_iiec6t.webp',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779861807/moto_Edge_50_iiec6t.webp'],
   },
   {
-    id: 8,
     title: "iQOO 13",
     description: "Gaming-focused smartphone with ultra-fast charging.",
     price: 62999,
@@ -94,12 +110,11 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Smartphones",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779861808/iq-13_ianbhz.webp'
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779861808/iq-13_ianbhz.webp']
   },
 
   // ================= FOOTWEAR (6) =================
   {
-    id: 9,
     title: "Nike Air Jordan 1",
     description: "Iconic basketball sneakers with premium leather finish.",
     price: 15999,
@@ -108,10 +123,9 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Footwear",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/sheos_y4rodq.webp'
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/sheos_y4rodq.webp']
   },
   {
-    id: 10,
     title: "Adidas Ultraboost 5",
     description: "Comfortable running shoes with responsive cushioning.",
     price: 18999,
@@ -120,10 +134,9 @@ const products = [
     ratings: 4.7,
     createdBy: "Admin",
     category: "Footwear",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/AdidasUltraboost5_xacafc.webp',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/AdidasUltraboost5_xacafc.webp'],
   },
   {
-    id: 11,
     title: "Puma RS-X",
     description: "Stylish chunky sneakers for casual wear.",
     price: 9999,
@@ -132,11 +145,10 @@ const products = [
     ratings: 4.4,
     createdBy: "Admin",
     category: "Footwear",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/PumaRS-X_sjcysk.webp',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/PumaRS-X_sjcysk.webp'],
 
   },
   {
-    id: 12,
     title: "New Balance 9060",
     description: "Retro-inspired sneakers with modern comfort.",
     price: 14999,
@@ -145,11 +157,10 @@ const products = [
     ratings: 4.6,
     createdBy: "Admin",
     category: "Footwear",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/NewBalance9060_h5lung.webp',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/NewBalance9060_h5lung.webp'],
 
   },
   {
-    id: 13,
     title: "Converse Chuck Taylor",
     description: "Classic high-top canvas sneakers.",
     price: 5999,
@@ -158,11 +169,10 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Footwear",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/ConverseChuckTaylor_ozfzea.webp',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/ConverseChuckTaylor_ozfzea.webp'],
 
   },
   {
-    id: 14,
     title: "Reebok Nano X4",
     description: "Training shoes designed for gym and fitness.",
     price: 11999,
@@ -171,12 +181,11 @@ const products = [
     ratings: 4.3,
     createdBy: "Admin",
     category: "Footwear",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/ReebokNanoX4_pauiqc.webp',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779864051/ReebokNanoX4_pauiqc.webp'],
   },
 
   // ================= ACCESSORIES (6) =================
   {
-    id: 15,
     title: "Apple Watch Series 10",
     description: "Advanced smartwatch with health tracking features.",
     price: 49999,
@@ -185,10 +194,9 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Accessories",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779865148/Apple_Watch_Series_10_lzocyb.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779865148/Apple_Watch_Series_10_lzocyb.png'],
   },
   {
-    id: 16,
     title: "Ray-Ban Aviator Sunglasses",
     description: "Classic aviator sunglasses with UV protection.",
     price: 12999,
@@ -197,10 +205,9 @@ const products = [
     ratings: 4.7,
     createdBy: "Admin",
     category: "Accessories",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779865147/Ray-Ban_Aviator_Sunglasses_xixng0.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779865147/Ray-Ban_Aviator_Sunglasses_xixng0.png'],
   },
   {
-    id: 17,
     title: "Casio G-Shock GA2100",
     description: "Durable shock-resistant sports watch.",
     price: 8999,
@@ -209,10 +216,9 @@ const products = [
     ratings: 4.6,
     createdBy: "Admin",
     category: "Accessories",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779865147/Casio_G-Shock_GA2100_kkac5t.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779865147/Casio_G-Shock_GA2100_kkac5t.png'],
   },
   {
-    id: 18,
     title: "Fossil Leather Wallet",
     description: "Premium leather wallet with RFID protection.",
     price: 3999,
@@ -221,10 +227,9 @@ const products = [
     ratings: 4.4,
     createdBy: "Admin",
     category: "Accessories",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779865147/Fossil_Leather_Wallet_kloyil.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779865147/Fossil_Leather_Wallet_kloyil.png'],
   },
   {
-    id: 19,
     title: "Samsung Galaxy Watch 7",
     description: "Android smartwatch with fitness tracking.",
     price: 32999,
@@ -233,10 +238,9 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Accessories",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779865149/Samsung_Galaxy_Watch_7_qhgj6p.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779865149/Samsung_Galaxy_Watch_7_qhgj6p.png'],
   },
   {
-    id: 20,
     title: "Tommy Hilfiger Cap",
     description: "Stylish casual cap for everyday wear.",
     price: 2499,
@@ -245,12 +249,11 @@ const products = [
     ratings: 4.2,
     createdBy: "Admin",
     category: "Accessories",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779865148/Tommy_Hilfiger_Cap_qcttlw.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779865148/Tommy_Hilfiger_Cap_qcttlw.png'],
   },
 
   // ================= AUDIO GEAR (6) =================
   {
-    id: 21,
     title: "Sony WH-1000XM6",
     description: "Premium noise-cancelling wireless headphones.",
     price: 34999,
@@ -259,10 +262,9 @@ const products = [
     ratings: 4.9,
     createdBy: "Admin",
     category: "Audio Gear",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779866152/Sony_WH-1000XM6_mbqaej.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779866152/Sony_WH-1000XM6_mbqaej.png'],
   },
   {
-    id: 22,
     title: "AirPods Pro 3",
     description: "Apple wireless earbuds with active noise cancellation.",
     price: 26999,
@@ -271,10 +273,9 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Audio Gear",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779866152/AirPods_Pro_3_p2xgmb.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779866152/AirPods_Pro_3_p2xgmb.png'],
   },
   {
-    id: 23,
     title: "JBL Tune 770NC",
     description: "Wireless headphones with deep bass.",
     price: 9999,
@@ -283,10 +284,9 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Audio Gear",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779866150/JBL_Tune_770NC_ccdaxl.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779866150/JBL_Tune_770NC_ccdaxl.png'],
   },
   {
-    id: 24,
     title: "Boat Airdopes 411",
     description: "Affordable TWS earbuds with long battery life.",
     price: 2999,
@@ -295,10 +295,9 @@ const products = [
     ratings: 4.2,
     createdBy: "Admin",
     category: "Audio Gear",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779866150/Boat_Airdopes_411_ve9b5a.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779866150/Boat_Airdopes_411_ve9b5a.png'],
   },
   {
-    id: 25,
     title: "Sennheiser Momentum 4",
     description: "Audiophile-grade wireless headphones.",
     price: 29999,
@@ -307,10 +306,9 @@ const products = [
     ratings: 4.7,
     createdBy: "Admin",
     category: "Audio Gear",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779866151/Sennheiser_Momentum_4_ea4g5w.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779866151/Sennheiser_Momentum_4_ea4g5w.png'],
   },
   {
-    id: 26,
     title: "Nothing Ear (3)",
     description: "Transparent design wireless earbuds.",
     price: 11999,
@@ -319,12 +317,11 @@ const products = [
     ratings: 4.4,
     createdBy: "Admin",
     category: "Audio Gear",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779866151/Nothing_Ear_3_up6k0h.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779866151/Nothing_Ear_3_up6k0h.png'],
   },
 
   // ================= SMART HOME (6) =================
   {
-    id: 27,
     title: "Amazon Echo Dot 5",
     description: "Smart speaker with Alexa voice assistant.",
     price: 5499,
@@ -333,10 +330,9 @@ const products = [
     ratings: 4.6,
     createdBy: "Admin",
     category: "Smart Home",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867021/Amazon_Echo_Dot_5_itc0sv.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779867021/Amazon_Echo_Dot_5_itc0sv.png'],
   },
   {
-    id: 28,
     title: "Google Nest Hub",
     description: "Smart display for home automation.",
     price: 8999,
@@ -345,10 +341,9 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Smart Home",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867011/Google_Nest_Hub_bdjkjb.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779867011/Google_Nest_Hub_bdjkjb.png'],
   },
   {
-    id: 29,
     title: "Mi Smart Air Purifier 4",
     description: "Air purifier with HEPA filtration system.",
     price: 14999,
@@ -357,10 +352,9 @@ const products = [
     ratings: 4.4,
     createdBy: "Admin",
     category: "Smart Home",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867012/Mi_Smart_Air_Purifier_4_pxrmbj.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779867012/Mi_Smart_Air_Purifier_4_pxrmbj.png'],
   },
   {
-    id: 30,
     title: "Philips Hue Starter Kit",
     description: "Smart lighting system with app control.",
     price: 17999,
@@ -369,10 +363,9 @@ const products = [
     ratings: 4.7,
     createdBy: "Admin",
     category: "Smart Home",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867011/Philips_Hue_Starter_Kit_cepuso.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779867011/Philips_Hue_Starter_Kit_cepuso.png'],
   },
   {
-    id: 31,
     title: "Dyson V15 Detect",
     description: "Cordless smart vacuum cleaner.",
     price: 59999,
@@ -381,10 +374,9 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Smart Home",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867022/Dyson_V15_Detect_alsqjx.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779867022/Dyson_V15_Detect_alsqjx.png'],
   },
   {
-    id: 32,
     title: "TP-Link Smart Plug",
     description: "WiFi-enabled smart plug with app support.",
     price: 2499,
@@ -393,12 +385,11 @@ const products = [
     ratings: 4.3,
     createdBy: "Admin",
     category: "Smart Home",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867012/TP-Link_Smart_Plug_hboszs.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779867012/TP-Link_Smart_Plug_hboszs.png'],
   },
 
   // ================= LIFESTYLE (6) =================
   {
-    id: 33,
     title: "Kindle Paperwhite",
     description: "Waterproof e-reader with glare-free display.",
     price: 16999,
@@ -407,10 +398,9 @@ const products = [
     ratings: 4.7,
     createdBy: "Admin",
     category: "Lifestyle",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867746/Kindle_Paperwhite_kwrayc.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779867746/Kindle_Paperwhite_kwrayc.png'],
   },
   {
-    id: 34,
     title: "GoPro Hero 13",
     description: "Action camera for adventure recording.",
     price: 44999,
@@ -419,10 +409,9 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Lifestyle",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867747/GoPro_Hero_13_oxi78r.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779867747/GoPro_Hero_13_oxi78r.png'],
   },
   {
-    id: 35,
     title: "Instax Mini 12",
     description: "Instant camera for quick photo prints.",
     price: 8999,
@@ -431,10 +420,9 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Lifestyle",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867745/Instax_Mini_12_hqasdb.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779867745/Instax_Mini_12_hqasdb.png'],
   },
   {
-    id: 36,
     title: "Herschel Backpack",
     description: "Premium backpack for travel and daily use.",
     price: 6999,
@@ -443,10 +431,9 @@ const products = [
     ratings: 4.4,
     createdBy: "Admin",
     category: "Lifestyle",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867646/Herschel_Backpack_cvc46h.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779867646/Herschel_Backpack_cvc46h.png'],
   },
   {
-    id: 37,
     title: "Parker Vector Pen",
     description: "Elegant premium ballpoint pen.",
     price: 1499,
@@ -455,10 +442,9 @@ const products = [
     ratings: 4.3,
     createdBy: "Admin",
     category: "Lifestyle",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867746/Parker_Vector_Pen_tjxhus.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779867746/Parker_Vector_Pen_tjxhus.png'],
   },
   {
-    id: 38,
     title: "Wildcraft Travel Bag",
     description: "Durable travel bag with large storage.",
     price: 4999,
@@ -467,12 +453,11 @@ const products = [
     ratings: 4.2,
     createdBy: "Admin",
     category: "Lifestyle",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779867748/Wildcraft_Travel_Bag_euoqfd.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779867748/Wildcraft_Travel_Bag_euoqfd.png'],
   },
 
   // ================= WELLNESS (6) =================
   {
-    id: 39,
     title: "Fitbit Charge 6",
     description: "Fitness tracker with heart-rate monitoring.",
     price: 14999,
@@ -481,10 +466,9 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Wellness",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779868507/Fitbit_Charge_6_yxfjap.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779868507/Fitbit_Charge_6_yxfjap.png'],
   },
   {
-    id: 40,
     title: "Cult Dumbbell Set",
     description: "Adjustable dumbbell set for workouts.",
     price: 7999,
@@ -493,10 +477,9 @@ const products = [
     ratings: 4.4,
     createdBy: "Admin",
     category: "Wellness",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779868511/Cult_Dumbbell_Set_c7u8h5.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779868511/Cult_Dumbbell_Set_c7u8h5.png'],
   },
   {
-    id: 41,
     title: "Nike Yoga Mat",
     description: "Comfortable anti-slip yoga mat.",
     price: 2999,
@@ -505,10 +488,9 @@ const products = [
     ratings: 4.3,
     createdBy: "Admin",
     category: "Wellness",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779868508/Nike_Yoga_Mat_la3wly.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779868508/Nike_Yoga_Mat_la3wly.png'],
   },
   {
-    id: 42,
     title: "NoiseFit Active",
     description: "Smart fitness watch with SpO2 monitoring.",
     price: 4999,
@@ -517,10 +499,9 @@ const products = [
     ratings: 4.1,
     createdBy: "Admin",
     category: "Wellness",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779868508/NoiseFit_Active_rtnw69.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779868508/NoiseFit_Active_rtnw69.png'],
   },
   {
-    id: 43,
     title: "AGARO Massage Gun",
     description: "Deep tissue muscle recovery massage gun.",
     price: 6999,
@@ -529,10 +510,9 @@ const products = [
     ratings: 4.4,
     createdBy: "Admin",
     category: "Wellness",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779868509/AGARO_Massage_Gun_ftoigx.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779868509/AGARO_Massage_Gun_ftoigx.png'],
   },
   {
-    id: 44,
     title: "Boldfit Resistance Bands",
     description: "Workout resistance bands for home fitness.",
     price: 1499,
@@ -541,12 +521,11 @@ const products = [
     ratings: 4.2,
     createdBy: "Admin",
     category: "Wellness",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779868510/Boldfit_Resistance_Bands_wj3tmj.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779868510/Boldfit_Resistance_Bands_wj3tmj.png'],
   },
 
   // ================= SPEAKERS (6) =================
   {
-    id: 45,
     title: "JBL Flip 7",
     description: "Portable waterproof Bluetooth speaker.",
     price: 11999,
@@ -555,10 +534,9 @@ const products = [
     ratings: 4.7,
     createdBy: "Admin",
     category: "Speakers",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779869353/JBL_Flip_7_llwbhy.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779869353/JBL_Flip_7_llwbhy.png'],
   },
   {
-    id: 46,
     title: "Marshall Emberton II",
     description: "Compact speaker with signature Marshall sound.",
     price: 17999,
@@ -567,10 +545,9 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Speakers",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779869352/Marshall_Emberton_II_za6rzi.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779869352/Marshall_Emberton_II_za6rzi.png'],
   },
   {
-    id: 47,
     title: "Sony SRS-XB100",
     description: "Extra bass portable speaker.",
     price: 5999,
@@ -579,10 +556,9 @@ const products = [
     ratings: 4.5,
     createdBy: "Admin",
     category: "Speakers",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779869352/Sony_SRS-XB100_efsplu.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779869352/Sony_SRS-XB100_efsplu.png'],
   },
   {
-    id: 48,
     title: "Boat Stone 1500",
     description: "Rugged outdoor Bluetooth speaker.",
     price: 4499,
@@ -591,10 +567,9 @@ const products = [
     ratings: 4.3,
     createdBy: "Admin",
     category: "Speakers",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779869352/Boat_Stone_1500_w7bfrx.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779869352/Boat_Stone_1500_w7bfrx.png'],
   },
   {
-    id: 49,
     title: "Bose SoundLink Flex",
     description: "Premium portable speaker with rich audio.",
     price: 15999,
@@ -603,10 +578,9 @@ const products = [
     ratings: 4.8,
     createdBy: "Admin",
     category: "Speakers",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779869350/Bose_SoundLink_Flex_ls3epm.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779869350/Bose_SoundLink_Flex_ls3epm.png'],
   },
   {
-    id: 50,
     title: "Ultimate Ears Boom 4",
     description: "360-degree immersive Bluetooth speaker.",
     price: 13999,
@@ -615,7 +589,7 @@ const products = [
     ratings: 4.6,
     createdBy: "Admin",
     category: "Speakers",
-    image:'https://res.cloudinary.com/dqil4xngt/image/upload/v1779869349/Ultimate_Ears_Boom_4_o9rglt.png',
+    images:['https://res.cloudinary.com/dqil4xngt/image/upload/v1779869349/Ultimate_Ears_Boom_4_o9rglt.png'],
   },
 ];
 

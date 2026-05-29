@@ -1,11 +1,26 @@
 import { Button } from 'primereact/button'
 import { Link } from 'react-router-dom'
 
-const OrderSummary = () => {
-  return (
+const OrderSummary = ({ cartItems }) => {
+    const subtotal = cartItems.reduce(
+        (acc, item) =>
+            acc +
+            (item.product?.discountPrice || 0) *
+            item.quantity,
+        0
+    );
+
+    const shipping =subtotal >= 599 ? 0 : 25;
+
+    const tax = subtotal * 0.08; // 8%
+
+    const total =
+        subtotal + shipping + tax;
+    return (
+      
     <>
-          <div className="tw:flex tw:justify-center tw:items-center tw:xl:w-[30%]">
-              <div className="tw:flex tw:flex-col tw:items-center tw:w-full  tw:gap-6">
+          <div className="tw:flex tw:justify-center tw:xl:w-[30%]">
+              <div className="tw:flex tw:flex-col tw:items-center tw:w-full  tw:gap-6 tw:sticky tw:top-0">
                   {/* Summary Card */}
                   <div className="tw:bg-white tw:rounded-[28px] tw:p-8 tw:shadow-sm tw:md:w-1/2 tw:xl:w-full">
 
@@ -18,17 +33,20 @@ const OrderSummary = () => {
 
                           <div className="tw:flex tw:justify-between tw:text-[#64748b]">
                               <span>Subtotal</span>
-                              <span>₹1,848.00</span>
+                                <span>₹{subtotal.toFixed(2)}</span>
                           </div>
 
                           <div className="tw:flex tw:justify-between tw:text-[#64748b]">
                               <span>Express Shipping</span>
-                              <span>₹25.00</span>
+                                <span>{shipping === 0
+                                    ? "FREE"
+                                    : `₹${shipping.toFixed(2)}`}
+                                </span>
                           </div>
 
                           <div className="tw:flex tw:justify-between tw:text-[#64748b]">
                               <span>Tax Estimation</span>
-                              <span>₹147.84</span>
+                                <span>₹{tax.toFixed(2)}</span>
                           </div>
                       </div>
 
@@ -40,7 +58,7 @@ const OrderSummary = () => {
                           </span>
 
                           <span className="tw:text-2xl tw:md:text-3xl tw:font-bold tw:text-[#0070d1]">
-                            ₹2,020.84
+                                ₹{total.toFixed(2)}
                           </span>
                       </div>
 
@@ -78,7 +96,7 @@ const OrderSummary = () => {
                           </h4>
 
                           <p className="tw:text-[#2b77c0] tw:text-sm tw:mt-1">
-                              Earn 2,020 points on this order
+                                Earn {Math.floor(total)} points on this order
                           </p>
                       </div>
                   </div>

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Slider } from "primereact/slider";
 import axios from 'axios'
 import { Paginator } from "primereact/paginator";
+import { useNavigate } from "react-router-dom";
 
 export default function ShopHero() {
     const [priceValue, setPriceValue] = useState([400, 50000]);
@@ -14,6 +15,7 @@ export default function ShopHero() {
     const [first, setFirst] = useState(0);
     const [value, setValue] = useState(1);
     const [rows, setRows] = useState(8);
+    const navigate = useNavigate();
 
     const sortOptions = [
         { label: "Popularity", value: "popularity" },
@@ -88,7 +90,6 @@ export default function ShopHero() {
         })
 
         .filter((item) => {
-
             return item.ratings >= value;
         });
 
@@ -115,6 +116,51 @@ export default function ShopHero() {
         first,
         first + rows
     );
+
+    const addToCart = async (product) => {
+        try {
+
+            // Get token
+            const token =
+                localStorage.getItem("token") ||
+                sessionStorage.getItem("token");
+
+            // User not logged in
+            if (!token) {
+                alert("Please login first");
+                return;
+            }
+
+            // API request
+            const res = await axios.post(
+                "http://localhost:5000/api/cart/add",
+
+                {
+                    productId: product._id,
+                    quantity: 1,
+                },
+
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            console.log(res.data);
+
+            alert("Product added to cart");
+
+        } catch (error) {
+
+            console.log(error);
+
+            alert(
+                error.response?.data?.message ||
+                "Failed to add to cart"
+            );
+        }
+    };
 
     return (
         <div className="tw:min-h-screen tw:bg-[#f8f9ff] tw:px-4 tw:md:px-8 tw:py-8">
@@ -289,6 +335,7 @@ export default function ShopHero() {
                                 {paginatedProducts.map((item) => (
                                     <div
                                         key={item.id}
+                                        onClick={() => navigate(`/product/${item._id}`)}
                                         className=" tw:bg-white tw:rounded-[22px] tw:overflow-hidden tw:shadow-sm tw:hover:shadow-xl tw:transition-all tw:duration-300 tw:md:max-w-70 tw:md:min-w-65"
                                     >
 
@@ -296,7 +343,7 @@ export default function ShopHero() {
                                         <div className="tw:relative">
 
                                             <img
-                                                src={item.image}
+                                                src={item.images[0]}
                                                 alt={item.title}
                                                 className="tw:w-full tw:h-full tw:object-cover"
                                             />
@@ -312,6 +359,11 @@ export default function ShopHero() {
 
                                             {/* Cart Button */}
                                             <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    addToCart(item)
+                                                } }
+                                                
                                                 className="tw:absolute tw:bottom-4 tw:right-4 tw:w-12 tw:h-12 tw:bg-white tw:rounded-full tw:flex tw:items-center tw:justify-center tw:shadow-lg tw:hover:scale-120 tw:transition-all tw:cursor-pointer">
                                                 <i className="pi pi-cart-plus tw:text-[#0070d1] tw:text-xl"></i>
                                             </button>
@@ -351,14 +403,14 @@ export default function ShopHero() {
                                         </div>
                                     </div>
                                 ))}
-                                <div className="tw:flex tw:items-center tw:justify-center tw:mt-10 tw:h-fit">
-                                    <Paginator
-                                        first={first}
-                                        rows={rows}
-                                        totalRecords={filteredProducts.length}
-                                        onPageChange={onPageChange}
-                                    />
-                                </div>
+                            </div>
+                            <div className="tw:flex tw:items-center tw:justify-center tw:mt-10 tw:h-fit">
+                                <Paginator
+                                    first={first}
+                                    rows={rows}
+                                    totalRecords={filteredProducts.length}
+                                    onPageChange={onPageChange}
+                                />
                             </div>
                         </section>
                     </div>

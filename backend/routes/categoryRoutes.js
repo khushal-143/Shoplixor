@@ -1,16 +1,12 @@
-
 import express from "express";
-import categories from '../data/categories.js'
+
+import {
+  getAllCategories,
+} from "../controllers/categoryController.js";
 
 const router = express.Router();
 
 // GET ALL CATEGORIES
-router.get("/", (req, res) => {
-  res.status(200).json({
-    success: true,
-    totalCategories: categories.length,
-    categories,
-  });
-});
+router.get("/", getAllCategories);
 
 export default router;

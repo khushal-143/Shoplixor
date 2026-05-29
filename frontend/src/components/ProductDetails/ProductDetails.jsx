@@ -1,15 +1,39 @@
 import { useState, useEffect } from 'react';
 import { Galleria } from 'primereact/galleria';
-import { PhotoService } from '../../service/PhotoService';
 import { Rating } from 'primereact/rating';
 import { Button } from 'primereact/button';
-import './ProductDetaile.css'
-const ProductDetails = () => {
-    const [images, setImages] = useState(null);
+import './ProductDetails.css'
+import axios from 'axios';
+const ProductDetails = ({ id }) => {
+    const [product, setProduct] = useState(null);
+    const images =
+        product?.images?.map((img) => ({
+            itemImageSrc: img,
+            thumbnailImageSrc: img,
+            alt: product.title,
+        })) || [];
     const [value, setValue] = useState(4);
     const [openIndex, setOpenIndex] = useState(null);
+    const [quantity, setQuantity] = useState(1);
 
-    
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const res = await axios.get(
+                    `http://localhost:5000/api/products/${id}`
+                );
+
+                setProduct(res.data.product);
+
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchProduct();
+    }, [id]);
+
+
     const responsiveOptions = [
         {
             breakpoint: '991px',
@@ -22,9 +46,9 @@ const ProductDetails = () => {
     ];
     const accordionData = [
         {
-            title: "FEATURES",
+            title: "CATEGORY",
             content:
-                "Crafted with aerospace-grade titanium, sapphire crystal glass, and an intelligent neural interface for seamless interaction.",
+                `${product?.category}`,
         },
         {
             title: "SHIPPING",
@@ -38,37 +62,96 @@ const ProductDetails = () => {
         },
     ];
 
-    useEffect(() => {
-        PhotoService.getImages().then(data => setImages(data));
-    }, [])
-
     const itemTemplate = (item) => {
-        return <img src={item.itemImageSrc} alt={item.alt} style={{ width: '100%' }} />
-    }
+        return (
+            <div className="tw:w-full tw:h-125 tw:bg-white tw:flex tw:items-center tw:justify-center">
+                <img
+                    src={item.itemImageSrc}
+                    alt={item.alt}
+                    className="tw:w-full tw:h-full tw:object-contain tw:mt-4"
+                />
+            </div>
+        );
+    };
 
     const thumbnailTemplate = (item) => {
-        return <img src={item.thumbnailImageSrc} alt={item.alt} />
-    }
+        return (
+            <div className="tw:h-20 tw:w-20">
+                <img
+                    src={item.thumbnailImageSrc}
+                    alt={item.alt}
+                    className="tw:w-full tw:h-full tw:object-contain"
+                />
+            </div>
+        );
+    };
     const toggleAccordion = (index) => {
         setOpenIndex(openIndex === index ? null : index);
+    };
+    const addToCart = async () => {
+        try {
+
+            const token =
+                localStorage.getItem("token") ||
+                sessionStorage.getItem("token");
+
+            if (!token) {
+                alert("Please login first");
+                return;
+            }
+
+            const res = await axios.post(
+                "http://localhost:5000/api/cart/add",
+                {
+                    productId: product._id,
+                    quantity,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            alert("Product added to cart");
+
+            console.log(res.data);
+
+        } catch (error) {
+
+            console.log(error);
+
+            alert(
+                error.response?.data?.message ||
+                "Failed to add to cart"
+            );
+        }
     };
 
     return (
         <>
             <div className="product-card tw:flex tw:flex-col tw:md:flex-row tw:p-4 tw:bg-[#f5fbf7]  ">
-                <div className='tw:flex tw:justify-center tw:px-4 tw:py-8 tw:relative tw:rounded-3xl tw:h-auto tw:md:w-[60%] tw:lg:w-[65%]'>
-                    <Galleria className='tw:rounded-xl! tw:overflow-hidden tw:md:pt-8' value={images} responsiveOptions={responsiveOptions} numVisible={5} style={{ maxWidth: '640px' }}
+                <div className='tw:flex tw:justify-center tw:px-4 tw:py-8 tw:relative tw:rounded-3xl tw:min-h-150 tw:md:w-[60%] tw:lg:w-[65%]'>
+                    <Galleria className='tw:rounded-xl! tw:overflow-hidden tw:md:pt-8'
+                        value={images}
+                        responsiveOptions={responsiveOptions}
+                        numVisible={5}
+                        style={{
+                            width: '100%',
+                            maxWidth: '700px'
+                        }}
                         item={itemTemplate} thumbnail={thumbnailTemplate}
                         pt={{
                             item: {
                                 style: {
                                     borderRadius: "20px",
-                                    overflow:"hidden"
-                            }},
+                                    overflow: "hidden"
+                                }
+                            },
                             thumbnailContainer: { style: { background: 'transparent' } },
                             thumbnailItemContent: {
                                 style: {
-                                    border: "3px solid white",
+                                    border: "3px solid transparent",
                                     borderRadius: "10px",
                                     overflow: "hidden"
                                 }
@@ -77,8 +160,8 @@ const ProductDetails = () => {
                     <p className='tw:absolute tw:top-5 tw:left-5 tw:bg-[#01609f] tw:text-white tw:py-2 tw:px-4 tw:rounded-3xl tw:font-jakarta tw:font-normal tw:text-sm tw:leading-6'>Bestseller</p>
                 </div>
                 <div className='tw:px-4 tw:py-8 tw:flex tw:flex-col tw:gap-4 tw:md:w-[40%] tw:lg:w-[35%]'>
-                    <p className='tw:font-geist tw:font-normal tw:text-sm tw:leading-6 tw:text-[#00609F]'>AETHER CORE SERIES</p>
-                    <p className='tw:font-geist tw:font-bold tw:text-3xl tw:md:text-4xl tw:lg:text-5xl tw:lg:leading-12 tw:leading-10 '>Precision Chronos V2</p>
+                    <p className='tw:font-geist tw:font-normal tw:text-sm tw:leading-6 tw:text-[#00609F]'>{product?.brand}</p>
+                    <p className='tw:font-geist tw:font-bold tw:text-3xl tw:md:text-4xl tw:lg:text-5xl tw:lg:leading-12 tw:leading-10 '>{product?.title}</p>
                     <div className="tw:flex tw:items-center tw:gap-2">
                         <Rating value={value} onChange={(e) => setValue(e.value)} cancel={false}
                             pt={{
@@ -91,25 +174,41 @@ const ProductDetails = () => {
                         />
                         <p className='tw:font-jakarta tw:font-medium tw:text-xs tw:leading-3.5 tw:text-[#6D7A76] '>(149)reviews </p>
                     </div>
-                    <p className='tw:font-jakarta tw:font-normal tw:text-sm tw:text-[#6D7A76] tw:leading-7'>By Sarah Johnson | Published by Bright Kids</p>
+                    <p className='tw:font-jakarta tw:font-normal tw:text-sm tw:text-[#6D7A76] tw:leading-7'>By {product?.brand}</p>
                     <div className='tw:flex tw:gap-2 tw:items-baseline'>
-                        <p className='tw:font-jakarta tw:font-bold tw:text-2xl tw:leading-10 tw:text-[#00609f] '>₹299</p>
-                        <p className='tw:font-jakarta tw:font-normal tw:text-base tw:leading-7 tw:text-[#6D7A76]'><s>₹399</s></p>
+                        <p className='tw:font-jakarta tw:font-bold tw:text-2xl tw:leading-10 tw:text-[#00609f] '>₹{product?.discountPrice}</p>
+                        <p className='tw:font-jakarta tw:font-normal tw:text-base tw:leading-7 tw:text-[#6D7A76]'><s>₹{product?.price}</s></p>
                         <p className='tw:font-jakarta tw:font-normal tw:text-sm tw:leading-10 tw:bg-[#a5d9fc] tw:text-[#00609f] tw:px-2 tw:rounded-xl '>25% OFF</p>
                     </div>
-                    <p className='tw:font-normal tw:text-sm tw:leading-6 tw:my-2 tw:text-[#404751] '>Engineered for the modern visionary. The Chronos
-                        V2 combines aerospace-grade titanium with an
-                        intuitive neural interface, redefining the boundaries
-                        between art and utility.</p>
+                    <p className='tw:font-normal tw:text-sm tw:leading-6 tw:my-2 tw:text-[#404751] '>{product?.description}</p>
 
                     <div className='tw:flex tw:flex-col tw:gap-1'>
                         <div className='tw:flex tw:items-center tw:gap-4 tw:px-2'>
                             <div className='tw:flex tw:items-center tw:gap-4 tw:p-2 tw:px-3 tw:border tw:border-[#dde1e8] tw:rounded-3xl tw:bg-white' >
-                                <i className='pi pi-minus tw:text-[#4c525b] tw:text-xs tw:cursor-pointer '></i>
-                                <p className='tw:text-sm'>1</p>
-                                <i className='pi pi-plus  tw:text-[#4c525b] tw:text-xs tw:cursor-pointer'></i>
+                                <i
+                                    className='pi pi-minus tw:text-[#4c525b] tw:text-xs tw:cursor-pointer'
+                                    onClick={() =>
+                                        setQuantity((prev) =>
+                                            Math.max(1, prev - 1)
+                                        )
+                                    }
+                                />
+
+                                <p className='tw:text-sm'>
+                                    {quantity}
+                                </p>
+
+                                <i
+                                    className='pi pi-plus tw:text-[#4c525b] tw:text-xs tw:cursor-pointer'
+                                    onClick={() =>
+                                        setQuantity((prev) => prev + 1)
+                                    }
+                                />
                             </div>
-                            <Button className='tw:flex tw:gap-2 tw:items-center tw:justify-center tw:bg-[#2279c0]! tw:border-none! tw:px-4! tw:py-2! tw:rounded-3xl! tw:focus:shadow-none! tw:w-full!'>
+                            <Button
+                                onClick={addToCart}
+                                className='tw:flex tw:gap-2 tw:items-center tw:justify-center tw:bg-[#2279c0]! tw:border-none! tw:px-4! tw:py-2! tw:rounded-3xl! tw:focus:shadow-none! tw:w-full!'
+                            >
                                 <i className='pi pi-shopping-cart tw:text-white tw:block'></i>
                                 <span className='tw:text-white tw:font-jakarta tw:font-normal tw:text-base tw:leading-6 tw:items-center'>Add to Cart</span>
                             </Button>
